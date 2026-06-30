@@ -1,0 +1,27 @@
+<svg width="180" height="32" viewBox="0 0 180 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@500;600&amp;display=swap');
+      .logo-text {
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 600;
+        font-size: 19px;
+        fill: #252f3e;
+        letter-spacing: -0.02em;
+      }
+      .logo-icon {
+        stroke: #252f3e;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+</defs>
+  <!-- Calendar/Pin Icon -->
+  <rect x="7" y="6" width="20" height="20" rx="3" class="logo-icon"/>
+  <path d="M7 13 H27" class="logo-icon"/>
+  <path d="M12 4 V8" class="logo-icon"/>
+  <path d="M22 4 V8" class="logo-icon"/>
+  <circle cx="17" cy="19" r="1.5" fill="#252f3e"/>
+  <text x="38" y="22" class="logo-text">Bookinglane</text>
+</svg>

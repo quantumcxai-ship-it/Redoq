@@ -1,0 +1,3330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      window.addEventListener('error', function(e) {
+        var div = document.createElement('div');
+        div.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:red;color:white;z-index:999999;padding:20px;font-family:monospace;font-size:16px;white-space:pre-wrap;box-sizing:border-box;';
+        div.innerText = 'UNHANDLED ERROR: ' + e.message + '\nat ' + e.filename + ':' + e.lineno + ':' + e.colno + '\n\n' + (e.error ? e.error.stack : '');
+        document.body.appendChild(div);
+      });
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Redoq | Next-Gen SaaS & Intelligent Enterprise Systems</title>
+    <meta name="description" content="Redoq engineers next-generation SaaS platforms and intelligent cloud architectures. Discover visual development with Kuick Studio, secure IT access with Kuick Connect, and AI-driven ordering with Kuick Food." />
+    <meta name="keywords" content="Redoq, Kuick Studio, Kuick Connect, Kuick Food, SaaS platforms, enterprise software, cloud-native scale, intelligent automation, digital transformation, custom software development" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://redoq.com/" />
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Redoq | Next-Gen SaaS & Intelligent Enterprise Systems" />
+    <meta property="og:description" content="Redoq engineers next-generation SaaS platforms and intelligent cloud architectures. Power visual development, remote connectivity, and seamless customer transactions." />
+    <meta property="og:url" content="https://redoq.com/" />
+    <meta property="og:site_name" content="Redoq" />
+    <meta property="og:image" content="https://redoq.com/companies/KuickStudio_preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Redoq | Next-Gen SaaS & Intelligent Enterprise Systems" />
+    <meta name="twitter:description" content="Redoq engineers next-generation SaaS platforms and intelligent cloud architectures. Power visual development, remote connectivity, and seamless customer transactions." />
+    <meta name="twitter:image" content="https://redoq.com/companies/KuickStudio_preview.png" />
+
+    <!-- JSON-LD Structured Data Schema for Google indexing -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Redoq",
+        "url": "https://redoq.com/",
+        "logo": "https://redoq.com/logo.svg",
+        "email": "hello@redoq.com",
+        "description": "Proprietary software engines and SaaS platforms engineered for enterprise growth.",
+        "knowsAbout": [
+          "Software Development",
+          "Cloud Architecture",
+          "SaaS Platforms",
+          "AI and Machine Learning",
+          "Digital Transformation"
+        ],
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Kuick Studio",
+            "description": "Visual drag-and-drop development platform."
+          },
+          {
+            "@type": "Offer",
+            "name": "Kuick Connect",
+            "description": "Secure remote access and IT administration tool."
+          },
+          {
+            "@type": "Offer",
+            "name": "Kuick Food",
+            "description": "AI-driven food delivery and restaurant EPOS management system."
+          }
+        ]
+      }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,200;0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+      canvas {
+        pointer-events: none !important;
+      }
+
+      /* Hide scrollbar for WebKit browsers */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      html {
+        /* Base 16px at 1920px width. Clamps at 12px for smaller screens to maintain readability */
+        font-size: max(12px, 0.833333vw);
+      }
+      body {
+        margin: 0;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        background-color: #ffffff;
+        height: 2800vh; /* Long cinematic scroll, rebalanced so each section gets even pacing */
+        font-family: 'Sarabun', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 200;
+        margin: 0;
+      }
+      .flow-title {
+        font-size: max(2.625rem, 5.5vw);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+      .preload-hidden {
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+      .reveal-anim {
+        transition: transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s, opacity 1.6s ease 0.6s;
+        will-change: transform, opacity;
+      }
+      .preload-hidden.reveal-anim.from-top {
+        transform: translateY(-20px);
+      }
+      .preload-hidden.reveal-anim.from-bottom {
+        transform: translateY(20px);
+      }
+      canvas {
+        display: block;
+      }
+      .hero-logo {
+        position: absolute;
+        top: 2.5rem;
+        left: 3.125rem;
+        z-index: 5;
+        height: 1.75rem;
+        width: auto;
+      }
+      .hero-title {
+        position: absolute;
+        top: 43%;
+        transform: translateY(-50%);
+        left: 3.125rem;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 200;
+        /* Scales smoothly on desktop, shrinks safely on mobile, scales infinitely on 4K */
+        font-size: max(2.5rem, 7vw); 
+        color: #000000;
+        margin: 0;
+        z-index: 2; /* Positioned between background canvas and foreground canvas */
+        pointer-events: none;
+        line-height: 1.0;
+        white-space: nowrap; /* Ensure it only breaks where the <br> is placed */
+      }
+      .char-mask {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: bottom;
+        padding-top: 0.2em;
+        margin-top: -0.2em;
+        /* Massive buffer at the bottom completely prevents the rigid cut-off during blur without causing mask-image GPU lag */
+        padding-bottom: 1.2em; 
+        margin-bottom: -1.2em;
+        perspective: 500px;
+      }
+      .hero-char {
+        display: inline-block;
+        transform: translateY(110%) translateZ(-60px) rotateX(-65deg);
+        transform-origin: bottom center;
+        filter: blur(14px);
+        opacity: 0;
+        /* Hardware acceleration to completely eliminate lag */
+        will-change: transform, filter, opacity;
+        transition: transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.6s ease, opacity 1.2s ease;
+      }
+      .hero-char.revealed {
+        transform: translateY(0) translateZ(0) rotateX(0deg);
+        filter: blur(0px);
+        opacity: 1;
+      }
+      /* Non-hero titles animate much faster for snappy scrolling */
+      .animated-title .hero-char {
+        transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s ease, opacity 0.6s ease;
+      }
+      .hero-nav {
+        position: absolute;
+        top: 2.5rem;
+        right: 3.125rem;
+        z-index: 5; /* Above canvas to be clickable */
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 400;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.75rem;
+      }
+      .hero-nav a {
+        color: #000000;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 400; /* Regular weight */
+        text-transform: uppercase; /* All caps */
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 1; /* Fully black, no transparency */
+        transition: transform 0.2s ease;
+        cursor: pointer;
+      }
+      .hero-nav a:hover {
+        transform: translateX(-4px);
+      }
+      .hero-nav a .nav-arrow {
+        font-size: 1.2rem;
+        font-weight: 400; /* Keep arrow regular too */
+        line-height: 1;
+      }
+      .hero-subtitle {
+        font-weight: 400;
+        color: #000000;
+      }
+      .hero-info-block {
+        position: absolute;
+        bottom: 3.125rem;
+        left: 3.125rem;
+        z-index: 5;
+        font-family: 'Sarabun', sans-serif;
+        color: #000000;
+        width: 20rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .hi-top {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.1rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+      .hi-text {
+        font-size: 1.0625rem;
+        line-height: 1.5;
+        opacity: 0.7;
+        margin-bottom: 2.5rem;
+      }
+      .hi-btn {
+        align-self: flex-start;
+        padding: 0.875rem 3rem; /* Bigger padding */
+        border: 1px solid #000000; /* Solid black border */
+        border-radius: 2.5rem;
+        background: rgba(255, 255, 255, 0.1); /* Glass background */
+        backdrop-filter: blur(12px); /* Glass blur */
+        -webkit-backdrop-filter: blur(12px);
+        color: #000;
+        text-decoration: none;
+        font-size: 0.95rem; /* Slightly larger text */
+        font-weight: 400;
+        letter-spacing: 1px;
+        transition: background 0.2s, transform 0.2s;
+      }
+      .hi-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+      .scroll-content-wrapper {
+        position: absolute;
+        top: calc(100vh + 34.375rem);
+        left: 0;
+        width: 100%;
+        z-index: 2; /* Positioned behind the 3D model (which is z-index: 3) */
+        display: flex;
+        flex-direction: column;
+      }
+      .scroll-title-container {
+        padding-left: 3.125rem;
+        margin-bottom: 37.5rem; /* Exact distance from hero title to button */
+      }
+      .scroll-title-container h3 {
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 200;
+        font-size: max(2.625rem, 5.5vw);
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+        color: #000;
+        margin: 0;
+        line-height: 1.1;
+      }
+      
+      .clients-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 37.5rem;
+      }
+      .clients-subtitle {
+        font-family: 'Sarabun', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        padding-left: 3.125rem;
+        margin-bottom: 1rem;
+        color: #000;
+      }
+      .clients-line {
+        height: 1px;
+        margin-left: 3.125rem;
+        margin-right: 3.125rem;
+        background: linear-gradient(to right, #0091ff, #00aaff, #8000ff, #ff0099, #ff0000);
+        margin-bottom: 3rem;
+      }
+      .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        filter: grayscale(100%);
+        opacity: 0.8;
+      }
+      .marquee-content {
+        display: inline-flex;
+        align-items: center;
+        gap: 6rem;
+        padding-right: 6rem; /* Match gap so the loop is seamless */
+        animation: marquee 25s linear infinite;
+      }
+      @keyframes marquee {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
+      }
+      .marquee-logo {
+        height: 3.75rem;
+        width: auto;
+        object-fit: contain;
+      }
+      
+      .feature-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .feature-title {
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 200;
+        font-size: max(2.625rem, 5.5vw);
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+        color: #000;
+        margin: 0;
+        line-height: 1.1;
+      }
+      .split-feature-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-left: 3.125rem;
+        padding-right: 3.125rem;
+        box-sizing: border-box;
+        margin-top: 37.5rem;
+      }
+      .pill-badge {
+        display: inline-block;
+        font-family: 'Sarabun', sans-serif;
+        font-size: max(0.875rem, 1vw);
+        font-weight: 400;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 50px;
+        padding: 0.3rem 1.2rem;
+        color: #000;
+      }
+      .split-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 45rem;
+      }
+      .feature-text {
+        font-family: 'Sarabun', sans-serif;
+        font-size: max(1.1rem, 1.25vw);
+        line-height: 1.5;
+        font-weight: 300;
+        color: #000;
+        opacity: 0.8;
+      }
+      .phase4-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 5;
+        pointer-events: none;
+        display: flex;
+        align-items: flex-end; /* Align to bottom */
+        justify-content: flex-end;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      .phase4-container .split-feature-container {
+        pointer-events: auto;
+        margin-top: 0;
+        padding-top: 4rem; /* 64px from the top edge */
+        padding-bottom: 4rem; /* 64px from the bottom edge */
+        height: 100vh;
+        justify-content: space-between;
+        width: auto;
+        align-items: flex-start;
+      }
+      .phase5-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 4;
+        pointer-events: none;
+        opacity: 0;
+      }
+      .phase5-title-left {
+        position: absolute;
+        top: 2.5rem;
+        left: 3.125rem;
+        text-align: left;
+        margin: 0;
+      }
+      .phase5-title-right {
+        position: absolute;
+        bottom: 2.5rem;
+        right: 3.125rem;
+        text-align: right;
+        margin: 0;
+      }
+      .phase5-desc-left {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 3.125rem;
+        text-align: left;
+        max-width: 25rem;
+        margin: 0;
+      }
+      .phase5-label-right {
+        position: absolute;
+        top: 2.5rem;
+        right: 3.125rem;
+        width: 12rem;
+        margin: 0;
+      }
+      .phase6-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 2; /* Behind the 3D model (which is z-index: 3) */
+        pointer-events: none;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .phase6-title {
+        position: absolute;
+        top: 30vh;
+        transform: translateY(-50%);
+        left: 0;
+        width: 100%;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 200;
+        font-size: max(2.5rem, 7vw);
+        color: #000;
+        margin: 0;
+        line-height: 1.0;
+        text-align: center;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+      .phase6-footer-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 4; /* Above the 3D model */
+        pointer-events: none;
+        transform: translateY(100vh); /* Start off-screen */
+      }
+      .phase6-footer-wrapper * {
+        pointer-events: auto;
+      }
+      .glass-footer {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 3.125rem;
+        right: 3.125rem;
+        padding: 3rem;
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        color: #000;
+        font-family: 'Sarabun', sans-serif;
+      }
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+      }
+      .footer-left {
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+      }
+      .footer-heading {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+      }
+      .footer-input-group {
+        display: flex;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 2rem;
+        padding: 0.3rem;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        max-width: 22rem;
+      }
+      .footer-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding-left: 1rem;
+        font-family: 'Sarabun', sans-serif;
+        font-size: 0.9rem;
+      }
+      .footer-submit {
+        background: #000;
+        color: #fff;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.6rem 1.5rem;
+        font-family: 'Sarabun', sans-serif;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .footer-submit:hover {
+        transform: scale(1.05);
+      }
+      .footer-subtext {
+        font-size: 0.75rem;
+        opacity: 0.6;
+        line-height: 1.4;
+        max-width: 22rem;
+      }
+      .footer-right {
+        display: flex;
+        gap: 5rem;
+        padding-right: 2rem;
+      }
+      .footer-col {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .footer-col-title {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+      .footer-col a {
+        color: #000;
+        opacity: 0.7;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: opacity 0.2s;
+      }
+      .footer-col a:hover {
+        opacity: 1;
+      }
+      .footer-line {
+        height: 1px;
+        background: rgba(0, 0, 0, 0.1);
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: 0.8rem;
+        opacity: 0.6;
+      }
+      @media (max-width: 768px) {
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+      .words-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        perspective: 1500px;
+        z-index: 2; /* Behind the model */
+        pointer-events: none;
+      }
+      .flying-word {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 400;
+        /* Scales proportionately to screen width infinitely */
+        font-size: max(80px, 25vw); 
+        color: #000000;
+        margin: 0;
+        padding: 0 0.2em; /* Ensure the parent GPU texture encompasses the padded children */
+        opacity: 0; /* Hidden by default */
+        white-space: nowrap; /* Prevents individual letter spans from breaking to a new line */
+        /* Default transform centers it */
+        transform: translate3d(-50%, -50%, 0) rotateY(0deg);
+      }
+      .flying-word .char {
+        display: inline-block;
+        /* Prevent WebKit GPU texture clipping on overflowing glyphs (like the tail of 'h') */
+        padding: 0 0.15em; 
+        margin: 0 -0.15em;
+        will-change: transform, filter, opacity;
+      }
+      .glass-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.15); /* Frosted white glass */
+        backdrop-filter: blur(30px); /* Blurs the ASCII matrix behind it */
+        -webkit-backdrop-filter: blur(30px);
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        z-index: 10; /* Covers everything, including the 3D model (z-index 3) */
+        transform: translateY(100vh); /* Start hidden below the screen */
+        pointer-events: none;
+      }
+      .glass-gradient-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /* 64px margins on all sides means 100% - 128px */
+        width: calc(100% - 8rem);
+        height: calc(100% - 8rem);
+        transform: translate(-50%, -50%) scale(0.65); /* Start slightly smaller */
+        border-radius: 0px; 
+        overflow: hidden;
+        pointer-events: auto;
+      }
+      .glass-gradient-img {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        opacity: 0.5; /* 50% transparency */
+      }
+      .gradient-content {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: 2;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: #000000; /* Black text */
+        font-family: 'Sarabun', sans-serif;
+      }
+      .gc-top-left {
+        font-size: max(2.625rem, 5.5vw); /* Slightly reduced to guarantee 2 lines without breaking layout */
+        font-weight: 200;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: #000000; /* Black text */
+        max-width: none; /* Let it flow naturally to fit 2 lines */
+        white-space: nowrap; /* Force exactly two lines by placing only one <br> */
+      }
+      .gc-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .gc-bottom-left {
+        font-size: 14px;
+        font-weight: 400;
+        opacity: 0.8;
+      }
+      .gc-bottom-right {
+        display: flex;
+        gap: 3.75rem;
+        align-items: flex-end; /* Align columns at the bottom */
+      }
+      .stat-col {
+        position: relative;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .stat-col-tall {
+        margin-bottom: 120px; /* Pushes the 200+ text UP */
+      }
+      .stat-col::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
+        width: 1px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.2) 10%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0.0)); /* Black line */
+      }
+      .stat-col-tall::before {
+        bottom: -120px; /* Stretches the vertical line DOWN to align with the other columns */
+      }
+      .stat-num {
+        font-size: max(42px, 5.5vw); /* Match the header size */
+        font-weight: 200;
+        line-height: 1;
+      }
+      .stat-desc {
+        font-size: 13px;
+        line-height: 1.5;
+        opacity: 0.85;
+      }
+      .stat-sub {
+        opacity: 0.5;
+        font-size: 11px;
+      }
+      .stat-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.05); /* Dark button */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+        border: 1px solid rgba(0,0,0,0.1);
+      }
+      .stat-btn:hover {
+        background: rgba(0, 0, 0, 0.15);
+      }
+    /* Products Cards Section CSS */
+    .products-section-container {
+      padding: 10rem 3.125rem 25rem 3.125rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+    .products-section-title {
+      margin-bottom: 6rem;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      width: 100%;
+    }
+    .product-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
+      padding: 3rem;
+      box-sizing: border-box;
+      height: 38rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-out;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      cursor: pointer;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .product-card.card-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      pointer-events: none; /* Let card container handle mousemove */
+    }
+    .card-logo-container {
+      margin-bottom: 2rem;
+      transform: translateZ(30px);
+    }
+    .card-logo {
+      height: 1.8rem;
+      width: auto;
+    }
+    .card-desc {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      font-weight: 300;
+      color: #000;
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+      transform: translateZ(20px);
+    }
+    .card-preview-container {
+      width: 100%;
+      height: 15rem;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      transform: translateZ(40px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .card-glare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 60%);
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+    @media (max-width: 900px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .product-card {
+        height: auto;
+        min-height: 32rem;
+      }
+      .products-section-container {
+        padding-bottom: 10rem;
+      }
+    }
+  
+    /* Services Section CSS */
+    .services-section-container {
+      padding: 10rem 3.125rem 5rem 3.125rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      margin-bottom: 37.5rem;
+    }
+    .services-section-title {
+      margin-bottom: 2rem;
+    }
+    .services-section-subtitle {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      font-weight: 300;
+      color: #000;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      max-width: 45rem;
+      margin-bottom: 5rem;
+    }
+    .services-section-subtitle.subtitle-visible {
+      opacity: 0.6;
+      transform: translateY(0);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem;
+      width: 100%;
+    }
+    
+    @media (max-width: 1200px) {
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .services-section-container {
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+      }
+    }
+    
+    .service-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-sizing: border-box;
+      height: 25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-out;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
+      cursor: pointer;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    
+    .service-card.card-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+     
+    
+    .service-card:hover {
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.55);
+    }
+    
+    .service-icon-container {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      transform: translateZ(25px);
+    }
+    
+    .service-card-title {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: #000;
+      margin: 0 0 1rem 0;
+      letter-spacing: -0.02em;
+      transform: translateZ(20px);
+    }
+    
+    .service-desc {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      font-weight: 300;
+      color: #000;
+      opacity: 0.7;
+      margin: 0;
+      transform: translateZ(15px);
+    }
+    
+    .service-card.cta-card {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px dashed rgba(0, 0, 0, 0.2);
+    }
+    .service-card.cta-card:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    
+    /* SVG Animation Keyframes */
+    @keyframes float-svg {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+    @keyframes rotate-svg {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes pulse-svg {
+      0% { opacity: 0.3; transform: scale(0.95); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.3; transform: scale(0.95); }
+    }
+    @keyframes draw-path {
+      0% { stroke-dashoffset: 100; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes bar-grow {
+      0% { height: 10px; y: 38px; }
+      50% { height: 28px; y: 20px; }
+      100% { height: 10px; y: 38px; }
+    }
+    @keyframes pulse-ring {
+      0% { r: 5px; opacity: 1; }
+      100% { r: 22px; opacity: 0; }
+    }
+
+    /* ==========================================================================
+       MOBILE RESPONSIVENESS AND OVERFLOW FIXES (max-width: 768px)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      /* 1. Global Side Padding Adjustments */
+      .hero-logo {
+        top: 1.5rem;
+        left: 1.25rem;
+      }
+      .hero-nav {
+        top: 1.5rem;
+        right: 1.25rem;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.25rem;
+      }
+      .hero-nav a {
+        font-size: 0.85rem;
+      }
+      .hero-nav a .nav-arrow {
+        display: none; /* Hide arrow on mobile to save space */
+      }
+      
+      /* 2. Hero Title & Info Block */
+      .hero-title {
+        left: 1.25rem;
+        right: 1.25rem;
+        top: 38%;
+        font-size: 2.2rem;
+        white-space: normal;
+        max-width: none;
+        line-height: 1.1;
+      }
+      .hero-info-block {
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 2rem;
+        width: auto;
+        max-width: none;
+      }
+      .hi-top {
+        margin-bottom: 0.75rem;
+      }
+      .hi-text {
+        font-size: 0.95rem;
+        margin-bottom: 1.25rem;
+      }
+      .hi-btn {
+        padding: 0.75rem 2rem;
+        font-size: 0.85rem;
+      }
+
+      /* 3. Section containers & Scroll Title */
+      .scroll-title-container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        margin-bottom: 20rem; /* Tighter margins on mobile */
+      }
+      .scroll-title-container h3 {
+        font-size: 2rem;
+        white-space: normal;
+        line-height: 1.2;
+      }
+      .clients-subtitle {
+        padding-left: 1.25rem;
+      }
+      .clients-line {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+        margin-bottom: 2rem;
+      }
+      .clients-container {
+        margin-bottom: 20rem;
+      }
+      .split-feature-container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        margin-top: 20rem;
+      }
+      .feature-title {
+        font-size: 2rem;
+        white-space: normal;
+        line-height: 1.2;
+      }
+      .flow-title {
+        font-size: 2rem !important;
+        white-space: normal !important;
+        line-height: 1.2 !important;
+      }
+
+      /* 4. Products Section Container */
+      .products-section-container {
+        padding: 5rem 1.25rem 10rem 1.25rem !important;
+      }
+      .products-section-title {
+        margin-bottom: 2.5rem !important;
+      }
+
+      /* 5. Services Section Container */
+      .services-section-container {
+        padding: 5rem 1.25rem 3rem 1.25rem !important;
+        margin-bottom: 20rem;
+      }
+      .services-section-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
+      }
+
+      /* 6. Phase 3 (Glass Container & Stats Cards) */
+      .glass-gradient-wrapper {
+        width: calc(100% - 2.5rem);
+        height: calc(100% - 4rem);
+        transform: translate(-50%, -50%) scale(1);
+      }
+      .gc-top-left {
+        font-size: 1.8rem;
+        white-space: normal;
+        line-height: 1.2;
+      }
+      .gc-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+      .gc-bottom-right {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+        width: 100%;
+      }
+      .stat-col {
+        padding-left: 15px;
+        gap: 8px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .stat-col-tall {
+        margin-bottom: 0px;
+      }
+      .stat-col-tall::before {
+        bottom: 0px;
+      }
+      .stat-num {
+        font-size: 2.2rem;
+      }
+      .stat-btn {
+        display: none; /* Hide stat arrows on mobile to save vertical layout space */
+      }
+
+      /* 7. Phase 4 Container */
+      .phase4-container .split-feature-container {
+        height: auto;
+        min-height: 100vh;
+        justify-content: center;
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+        gap: 2rem;
+      }
+
+      /* 8. Phase 5 Container (Convert from absolute grids to stacked layout) */
+      .phase5-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 5rem 1.25rem;
+        box-sizing: border-box;
+      }
+      .phase5-label-right {
+        position: static;
+        margin-bottom: 1.5rem;
+        width: auto;
+      }
+      .phase5-title-left {
+        position: static;
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+      .phase5-desc-left {
+        position: static;
+        margin-bottom: 1.5rem;
+        max-width: none;
+        text-align: left;
+      }
+      .phase5-title-right {
+        position: static;
+        text-align: left;
+      }
+
+      /* 9. Phase 6 Container */
+      .phase6-title {
+        top: 35vh;
+        font-size: 2.2rem;
+        white-space: normal;
+        padding: 0 1.25rem;
+        box-sizing: border-box;
+      }
+
+      /* 10. Footer Layout */
+      .glass-footer {
+        left: 1.25rem;
+        right: 1.25rem;
+        padding: 1.5rem;
+        bottom: 1.5rem;
+      }
+      .footer-top {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .footer-left {
+        width: 100%;
+      }
+      .footer-right {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 1.5rem 1rem;
+        padding-right: 0;
+      }
+      .footer-col {
+        flex: 1 1 40%;
+      }
+      .footer-line {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      /* 11. Kinetic Typography Font Size Clamp */
+      .flying-word {
+        font-size: max(60px, 25vw) !important;
+      }
+    }
+</style>
+  
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+        "three/examples/jsm/": "https://unpkg.com/three@0.184.0/examples/jsm/",
+        "lenis": "https://unpkg.com/lenis@1.3.23/dist/lenis.mjs"
+      }
+    }
+    </script>
+
+  </head>
+  <body>
+    <!-- PRELOADER ODOMETER -->
+    <div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999; pointer-events: none; transition: opacity 1s ease;">
+      <div style="position: absolute; top: 2.5rem; left: 3.125rem; color: #000; font-family: 'Sarabun', sans-serif; font-weight: 200; font-size: 4rem; letter-spacing: -0.02em; line-height: 1;">
+        [ &nbsp;
+        <div style="height: 4rem; overflow: hidden; position: relative; width: 6.5rem; display: inline-block; vertical-align: top;">
+          <div id="odometer-numbers" style="position: absolute; top: 0; left: 0; width: 100%; transition: transform 0.05s linear; text-align: center;">
+            <!-- JS will inject numbers 0 to 100 here -->
+          </div>
+        </div>
+        &nbsp; / 100 ]
+      </div>
+    </div>
+
+    <img src="logo.svg" class="hero-logo preload-hidden reveal-anim from-top" alt="Redoq Logo" />
+    <h1 class="hero-title" id="animated-hero-title">Innovation meets<br><span class="hero-subtitle">opportunity</span></h1>
+    
+    <div class="hero-nav preload-hidden reveal-anim from-top">
+      <a href="#">home <span class="nav-arrow">↗</span></a>
+      <a href="#">plans <span class="nav-arrow">↗</span></a>
+      <a href="#">services <span class="nav-arrow">↗</span></a>
+      <a href="#">contact us <span class="nav-arrow">↗</span></a>
+    </div>
+    
+    <div class="hero-info-block preload-hidden reveal-anim from-bottom">
+      <div class="hi-top">
+        <span>( A )</span>
+        <span>[ 001 /004 ]</span>
+      </div>
+      <div class="hi-text">
+        Redoq is a global technology group delivering innovative AI, Cloud, and software solutions to drive end-to-end digital transformation.
+      </div>
+      <a href="#" class="hi-btn">GET STARTED</a>
+    </div>
+    
+    <div class="scroll-content-wrapper">
+      <div class="scroll-title-container" id="scroll-title">
+        <h3 class="animated-title flow-title">Empowering global businesses<br>with cloud-native scale and<br><span style="font-weight: 500;">intelligent automation</span></h3>
+      </div>
+      
+      <div class="clients-container">
+        <div class="clients-subtitle">OUR CLIENTS</div>
+        <div class="clients-line"></div>
+        <div class="marquee-container">
+          <div class="marquee-content">
+            <!-- Set 1 -->
+            <img class="marquee-logo" src="companies/AWS.svg" alt="Amazon Web Services">
+            <img class="marquee-logo" src="companies/DixyChicken.svg" alt="Dixy Chicken">
+            <img class="marquee-logo" src="companies/BeesLoud.svg" alt="BeesLoud">
+            <img class="marquee-logo" src="companies/Alrioz.svg" alt="Alrioz">
+            <img class="marquee-logo" src="companies/KuickFood.svg" alt="Kuick Food">
+            <img class="marquee-logo" src="companies/Bookinglane.svg" alt="Bookinglane">
+            <img class="marquee-logo" src="companies/DineOrder.svg" alt="DineOrder">
+            <img class="marquee-logo" src="companies/KuickConnect.svg" alt="Kuick Connect">
+            <!-- Set 2 -->
+            <img class="marquee-logo" src="companies/AWS.svg" alt="Amazon Web Services">
+            <img class="marquee-logo" src="companies/DixyChicken.svg" alt="Dixy Chicken">
+            <img class="marquee-logo" src="companies/BeesLoud.svg" alt="BeesLoud">
+            <img class="marquee-logo" src="companies/Alrioz.svg" alt="Alrioz">
+            <img class="marquee-logo" src="companies/KuickFood.svg" alt="Kuick Food">
+            <img class="marquee-logo" src="companies/Bookinglane.svg" alt="Bookinglane">
+            <img class="marquee-logo" src="companies/DineOrder.svg" alt="DineOrder">
+            <img class="marquee-logo" src="companies/KuickConnect.svg" alt="Kuick Connect">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Services Section -->
+      <div class="services-section-container" style="margin-bottom: 37.5rem;">
+        <h3 class="services-section-title animated-title flow-title">Services we offer<br>for the growth of<br><span style="font-weight: 500;">your business</span></h3>
+        <p class="services-section-subtitle">Think of us as your complete digital arsenal. Whatever your business needs to dominate online, we've got it covered.</p>
+        
+        <div class="services-grid">
+          <!-- Card 1: Search Engine Optimisation -->
+          <div class="service-card">
+            <div class="card-glare"></div>
+            <div class="service-icon-container">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: float-svg 4s ease-in-out infinite;">
+                <rect x="6" y="10" width="52" height="44" rx="6" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="6" y1="22" x2="58" y2="22" stroke="#000" stroke-width="2"/>
+                <circle cx="12" cy="16" r="2" fill="#000"/>
+                <circle cx="18" cy="16" r="2" fill="#000"/>
+                <rect x="18" y="38" width="6" height="10" rx="2" fill="#000" style="animation: bar-grow 2.5s ease-in-out infinite;"/>
+                <rect x="29" y="30" width="6" height="18" rx="2" fill="#000" style="animation: bar-grow 2.5s ease-in-out infinite; animation-delay: 0.4s;"/>
+                <rect x="40" y="24" width="6" height="24" rx="2" fill="#000" style="animation: bar-grow 2.5s ease-in-out infinite; animation-delay: 0.8s;"/>
+              </svg>
+            </div>
+            <h4 class="service-card-title">SEO</h4>
+            <p class="service-desc">Getting found on Google isn't luck, it's strategy. Our SEO services put your brand exactly where your customers are searching. We optimize everything from site structure to content, ensuring your customers find you first.</p>
+          </div>
+
+          <!-- Card 2: Search Engine Marketing -->
+          <div class="service-card">
+            <div class="card-glare"></div>
+            <div class="service-icon-container">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="24" stroke="#000" stroke-width="2.5" stroke-dasharray="4 4"/>
+                <circle cx="32" cy="32" r="16" stroke="#000" stroke-width="2.5"/>
+                <circle cx="32" cy="32" r="6" fill="#000"/>
+                <circle cx="32" cy="32" r="10" stroke="#000" stroke-width="1.5" style="animation: pulse-ring 2s cubic-bezier(0.16, 1, 0.3, 1) infinite; transform-origin: center;"/>
+                <path d="M42 42L49 56L44 58L38 45L31 51V31L48 38L42 42Z" fill="#000" stroke="#fff" stroke-width="2" style="animation: float-svg 2s ease-in-out infinite;"/>
+              </svg>
+            </div>
+            <h4 class="service-card-title">Search Engine Marketing</h4>
+            <p class="service-desc">Sometimes you can't wait for organic growth. As a results-focused marketing team, we engineer PPC campaigns that deliver instant visibility and qualified leads right when your audience needs you.</p>
+          </div>
+
+          <!-- Card 3: Social Media Marketing -->
+          <div class="service-card">
+            <div class="card-glare"></div>
+            <div class="service-icon-container">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 40C12 28.9543 20.9543 20 32 20C43.0457 20 52 28.9543 52 40C52 42.5 51.5 45 50.5 47C50.5 47 52.5 52.5 53 53.5C52 53 46.5 51 46.5 51C44.5 52 42 52.5 39.5 52.5" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M32 15C32 15 30 11 27 11C23.5 11 21.5 13.5 21.5 17C21.5 22 27.5 25.5 32 28.5C36.5 25.5 42.5 22 42.5 17C42.5 13.5 40.5 11 37 11C34 11 32 15 32 15Z" fill="#000" style="animation: float-svg 3s ease-in-out infinite;"/>
+                <circle cx="28" cy="38" r="2.5" fill="#000"/>
+                <circle cx="36" cy="38" r="2.5" fill="#000"/>
+                <circle cx="44" cy="38" r="2.5" fill="#000"/>
+              </svg>
+            </div>
+            <h4 class="service-card-title">Social Media Marketing</h4>
+            <p class="service-desc">Your customers are scrolling right now. We design high-engagement content that stops thumbs mid-scroll and transforms casual browsers into brand advocates across every major social platform.</p>
+          </div>
+
+          <!-- Card 4: Web App Development -->
+          <div class="service-card">
+            <div class="card-glare"></div>
+            <div class="service-icon-container">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g style="animation: rotate-svg 8s linear infinite; transform-origin: 32px 32px;">
+                  <circle cx="32" cy="32" r="14" stroke="#000" stroke-width="3"/>
+                  <rect x="30" y="12" width="4" height="6" fill="#000" rx="1"/>
+                  <rect x="30" y="46" width="4" height="6" fill="#000" rx="1"/>
+                  <rect x="12" y="30" width="6" height="4" fill="#000" rx="1"/>
+                  <rect x="46" y="30" width="6" height="4" fill="#000" rx="1"/>
+                </g>
+                <circle cx="32" cy="32" r="6" fill="#000"/>
+                <path d="M12 24L6 32L12 40" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation: pulse-svg 2.5s ease-in-out infinite;"/>
+                <path d="M52 24L58 32L52 40" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation: pulse-svg 2.5s ease-in-out infinite; animation-delay: 1.25s;"/>
+              </svg>
+            </div>
+            <h4 class="service-card-title">Web App Development</h4>
+            <p class="service-desc">Custom web applications engineered to help complex organizations operate smarter, connect seamlessly with users, and scale infrastructure with absolute confidence.</p>
+          </div>
+
+          <!-- Card 5: Web Design -->
+          <div class="service-card">
+            <div class="card-glare"></div>
+            <div class="service-icon-container">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 46C18 20 46 20 54 46" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="100" style="animation: draw-path 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;"/>
+                <rect x="8" y="44" width="4" height="4" fill="#fff" stroke="#000" stroke-width="2"/>
+                <rect x="52" y="44" width="4" height="4" fill="#fff" stroke="#000" stroke-width="2"/>
+                <path d="M26 22L36 12L42 18L32 28L26 30L26 22Z" fill="#000" stroke="#fff" stroke-width="1.5" style="animation: float-svg 2.5s ease-in-out infinite;"/>
+              </svg>
+            </div>
+            <h4 class="service-card-title">Web Design</h4>
+            <p class="service-desc">Blending strategic thinking, high-end aesthetics, and intuitive usability to craft digital interfaces users genuinely enjoy. We build layouts structured for clarity, performance, and growth.</p>
+          </div>
+
+          <!-- Card 6: UI/UX Design -->
+          <div class="service-card">
+            <div class="card-glare"></div>
+            <div class="service-icon-container">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: float-svg 3.5s ease-in-out infinite;">
+                <rect x="18" y="6" width="28" height="52" rx="5" stroke="#000" stroke-width="2.5"/>
+                <line x1="28" y1="10" x2="36" y2="10" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+                <rect x="22" y="16" width="20" height="26" rx="3" fill="#000" fill-opacity="0.1"/>
+                <circle cx="32" cy="24" r="5" fill="#000"/>
+                <line x1="26" y1="34" x2="38" y2="34" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="32" cy="48" r="4" stroke="#000" stroke-width="2" style="animation: pulse-ring 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite; transform-origin: 32px 48px;"/>
+                <circle cx="32" cy="48" r="2.5" fill="#000"/>
+              </svg>
+            </div>
+            <h4 class="service-card-title">UI/UX Design</h4>
+            <p class="service-desc">Designing journeys that feel natural, engaging, and purpose-driven. Our UI/UX solutions combine responsive layout systems with rigorous user research to optimize digital interactions.</p>
+          </div>
+
+          <!-- Card 7: Web Development -->
+          <div class="service-card">
+            <div class="card-glare"></div>
+            <div class="service-icon-container">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="8" width="52" height="34" rx="4" stroke="#000" stroke-width="2.5"/>
+                <path d="M24 42H40L44 54H20L24 42Z" fill="#000" stroke="#000" stroke-width="2" stroke-linejoin="round"/>
+                <line x1="14" y1="48" x2="50" y2="48" stroke="#000" stroke-width="2"/>
+                <rect x="12" y="14" width="16" height="12" rx="2" fill="#000" style="animation: pulse-svg 3s ease-in-out infinite;"/>
+                <rect x="32" y="14" width="20" height="4" rx="1" fill="#000" style="animation: pulse-svg 3s ease-in-out infinite; animation-delay: 0.5s;"/>
+                <rect x="32" y="22" width="20" height="4" rx="1" fill="#000" style="animation: pulse-svg 3s ease-in-out infinite; animation-delay: 1s;"/>
+              </svg>
+            </div>
+            <h4 class="service-card-title">Web Development</h4>
+            <p class="service-desc">Engineering highly-optimized, fast, and bulletproof web engines. Our development team builds clean code architectures that adapt to your growth and security requirements.</p>
+          </div>
+
+          <!-- Card 8: Partner With Us -->
+          <div class="service-card cta-card">
+            <div class="card-glare"></div>
+            <div class="service-icon-container">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M32 10C32 10 24 22 24 34C24 40 28 44 32 44C36 44 40 40 40 34C40 22 32 10 32 10Z" fill="#000"/>
+                <path d="M24 38L16 46L20 50L28 42L24 38Z" fill="#000" style="animation: float-svg 2s ease-in-out infinite;"/>
+                <path d="M40 38L48 46L44 50L36 42L40 38Z" fill="#000" style="animation: float-svg 2s ease-in-out infinite;"/>
+                <path d="M32 48C30 52 30 56 32 60C34 56 34 52 32 48Z" fill="#000" style="animation: pulse-svg 1.5s ease-in-out infinite;"/>
+              </svg>
+            </div>
+            <h4 class="service-card-title">Let's Build Together</h4>
+            <p class="service-desc">Have a vision or a digital challenge? Let's design, engineer, and launch your next breakthrough solution.</p>
+            <a href="mailto:hello@redoq.com" class="cta-link" style="margin-top: auto; display: inline-flex; align-items: center; font-weight: 500; font-family: 'Sarabun', sans-serif; font-size: 1rem; color: #000; text-decoration: none; transform: translateZ(10px);">Get In Touch <span style="margin-left: 0.5rem;">→</span></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="feature-container" style="align-items: flex-end; padding-right: 3.125rem; padding-left: 3.125rem; box-sizing: border-box; margin-bottom: 25rem;">
+        <h3 class="feature-title animated-title flow-title" style="text-align: right;">Architecting next-generation SaaS<br>products and robust enterprise<br><span style="font-weight: 500;">software engines</span></h3>
+      </div>
+      
+      <!-- Products Section -->
+      <div class="products-section-container">
+        <h3 class="products-section-title animated-title flow-title">Proprietary platforms<br>engineered for<br><span style="font-weight: 500;">enterprise growth</span></h3>
+        
+        <div class="products-grid">
+          <!-- Card 1: Kuick Food -->
+          <div class="product-card" id="card-kuick-food">
+            <div class="card-glare"></div>
+            <div class="card-content">
+              <div class="card-logo-container">
+                <img src="companies/KuickFood.svg" class="card-logo" alt="Kuick Food Logo" />
+              </div>
+              <p class="card-desc">
+                An AI-driven food delivery and restaurant EPOS management system. Features white-label ordering webservices, real-time driver dispatching, and slot-based kitchen optimization.
+              </p>
+              <div class="card-preview-container">
+                <img src="companies/KuickFood_preview.png" class="card-preview-img" alt="Kuick Food Preview" />
+              </div>
+            </div>
+          </div>
+          
+          <!-- Card 2: Kuick Connect -->
+          <div class="product-card" id="card-kuick-connect">
+            <div class="card-glare"></div>
+            <div class="card-content">
+              <div class="card-logo-container">
+                <img src="companies/KuickConnect.svg" class="card-logo" alt="Kuick Connect Logo" />
+              </div>
+              <p class="card-desc">
+                A highly secure remote access and IT administration tool. Enables encrypted, fast file transfers, cross-platform remote desktop control, and central system management.
+              </p>
+              <div class="card-preview-container">
+                <img src="companies/KuickConnect_preview.png" class="card-preview-img" alt="Kuick Connect Preview" />
+              </div>
+            </div>
+          </div>
+          
+          <!-- Card 3: Kuick Studio -->
+          <div class="product-card" id="card-kuick-studio">
+            <div class="card-glare"></div>
+            <div class="card-content">
+              <div class="card-logo-container">
+                <img src="companies/KuickStudio.svg" class="card-logo" alt="Kuick Studio Logo" />
+              </div>
+              <p class="card-desc">
+                A visual drag-and-drop development platform. Allows developers to design user interfaces and export production-ready code with complete styling control.
+              </p>
+              <div class="card-preview-container">
+                <img src="companies/KuickStudio_preview.png" class="card-preview-img" alt="Kuick Studio Preview" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <div class="words-container">
+      <div class="flying-word" id="word1">
+        <span class="char">C</span><span class="char">l</span><span class="char">o</span><span class="char">u</span><span class="char">d</span>
+      </div>
+      <div class="flying-word" id="word2">
+        <span class="char">S</span><span class="char">a</span><span class="char">a</span><span class="char">S</span>
+      </div>
+      <div class="flying-word" id="word3">
+        <span class="char">S</span><span class="char">c</span><span class="char">a</span><span class="char">l</span><span class="char">e</span>
+      </div>
+    </div>
+    
+    <!-- Words Scroll Spacer to prevent overlaps and pace animation right after products section -->
+    <div id="words-scroll-spacer" style="height: 500vh; position: relative; pointer-events: none;"></div>
+    </div>
+    
+    <div class="phase4-container" id="phase4-container" style="font-family: 'Sarabun', sans-serif;">
+      <div class="split-feature-container">
+        
+        <div class="hi-top" style="width: 100%; min-width: 15rem; max-width: 20rem; margin-bottom: 0;">
+          <span>( A )</span>
+          <span>[ 001 /004 ]</span>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+          <div class="split-top" style="text-align: left; display: inline-block;">
+            <h3 class="feature-title animated-title" id="phase4-title" style="text-align: left; margin-top: 0;">
+              Accelerate innovation with<br><span style="font-weight: 500;">intelligent cloud systems</span>
+            </h3>
+            <div class="clients-line" style="margin-top: 3rem; margin-bottom: 3rem; width: 100%; margin-left: 0; margin-right: 0;"></div>
+          </div>
+          
+          <div class="split-bottom" style="align-items: flex-start;">
+            <div class="hi-text" style="text-align: left; max-width: 30rem;">
+              From custom machine learning models to cloud-native microservices, we build scalable architectures that eliminate operational friction and accelerate your time-to-market.
+            </div>
+            <a href="#" class="hi-btn" style="margin-top: 1.5rem; text-transform: uppercase;">EXPLORE SOLUTIONS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div class="glass-container" id="glass-container">
+      <div id="glass-gradient" class="glass-gradient-wrapper">
+        <img src="gradient.png" class="glass-gradient-img" alt="Gradient" />
+        <div class="gradient-content">
+          <div class="gc-top-left animated-title" id="phase3-title">Deliver custom digital transformation<br>backed by robust engineering</div>
+          <div class="gc-bottom">
+            <div class="gc-bottom-left">Enterprise capability</div>
+            <div class="gc-bottom-right">
+              <div class="stat-col stat-col-tall">
+                <div class="stat-num">8+</div>
+                <div class="stat-desc">countries served<br><span class="stat-sub">*global footprint</span></div>
+                <div class="stat-btn">→</div>
+              </div>
+              <div class="stat-col">
+                <div class="stat-num">98%</div>
+                <div class="stat-desc">client satisfaction<br><span class="stat-sub">*long-term partnership</span></div>
+                <div class="stat-btn">→</div>
+              </div>
+              <div class="stat-col">
+                <div class="stat-num">16+</div>
+                <div class="stat-desc">years of engineering<br><span class="stat-sub">*deep domain expertise</span></div>
+                <div class="stat-btn">→</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase5-container" id="phase5-container" style="font-family: 'Sarabun', sans-serif;">
+      <div class="hi-top phase5-label-right">
+        <span>( A )</span>
+        <span>[ 001 /004 ]</span>
+      </div>
+      <h3 class="feature-title phase5-title-left animated-title" id="phase5-title-1">
+        State-of-the-art SaaS platforms
+      </h3>
+      
+      <div class="hi-text phase5-desc-left">
+        Leverage our proprietary platforms—Kuick Studio, Kuick Connect, and Kuick Food—to power remote connectivity, visual development, and seamless customer transactions.
+      </div>
+      <h3 class="feature-title phase5-title-right animated-title" id="phase5-title-2">
+        Engineered for<br><span style="font-weight: 500;">global scale</span>
+      </h3>
+    </div>
+
+    <div class="phase6-container" id="phase6-container">
+      <h3 class="phase6-title animated-title" id="phase6-title">
+        The future of<br><span style="font-weight: 400;">enterprise tech</span>
+      </h3>
+    </div>
+    
+    <div class="phase6-footer-wrapper" id="phase6-footer">
+      <div class="glass-footer">
+        <div class="footer-top">
+          <div class="footer-left">
+            <h2 style="margin: 0 0 2rem 0; font-weight: 500; font-size: 1.5rem; letter-spacing: -0.02em;">Redoq</h2>
+            <div class="footer-heading">Sign up to receive updates.</div>
+            <div class="footer-input-group">
+              <input type="email" placeholder="Enter your email" class="footer-input">
+              <button class="footer-submit">Submit</button>
+            </div>
+            <div class="footer-subtext">By subscribing you agree to our Privacy Policy and provide consent to receive updates from our company.</div>
+          </div>
+          
+          <div class="footer-right">
+            <div class="footer-col">
+              <div class="footer-col-title">Products</div>
+              <a href="#">Kuick Studio</a>
+              <a href="#">Kuick Connect</a>
+              <a href="#">Kuick Food</a>
+            </div>
+            <div class="footer-col">
+              <div class="footer-col-title">Learn</div>
+              <a href="#">Insights</a>
+              <a href="#">Cloud Services</a>
+              <a href="#">AI Solutions</a>
+            </div>
+            <div class="footer-col">
+              <div class="footer-col-title">About</div>
+              <a href="#">Company</a>
+              <a href="#">Careers</a>
+              <a href="#">Contact</a>
+            </div>
+            <div class="footer-col">
+              <div class="footer-col-title">Legal</div>
+              <a href="#">Terms & Conditions</a>
+              <a href="#">Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-line"></div>
+        <div class="footer-bottom">
+          <span>© 2026 Redoq, All rights reserved.</span>
+          <span>Crafted by Baibhab Bose - QuantumCX</span>
+        </div>
+      </div>
+    </div>
+
+    
+  
+    <script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+
+
+
+import Lenis from 'lenis';
+
+// Setup smooth scrolling with Lenis
+const lenis = new Lenis({
+  duration: 1.5,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+});
+
+const bgScene = new THREE.Scene();
+bgScene.background = new THREE.Color(0xf6fafe);
+
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 1, 5);
+
+const rendererBg = new THREE.WebGLRenderer({ antialias: true });
+rendererBg.setSize(window.innerWidth, window.innerHeight);
+rendererBg.setPixelRatio(window.devicePixelRatio);
+rendererBg.domElement.style.position = 'fixed'; // Keep fixed during page scroll
+rendererBg.domElement.style.top = '0';
+rendererBg.domElement.style.left = '0';
+rendererBg.domElement.style.zIndex = '0';
+rendererBg.domElement.style.pointerEvents = 'none'; // Click-through
+document.body.appendChild(rendererBg.domElement);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+// Important for GLTF models:
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.domElement.style.position = 'fixed'; // Keep fixed during page scroll
+renderer.domElement.style.top = '0';
+renderer.domElement.style.left = '0';
+renderer.domElement.style.zIndex = '3';
+renderer.domElement.style.pointerEvents = 'none'; // Click-through as manual rotation is disabled
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enabled = false; // Disable manual mouse rotation
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+
+// Add lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 2.0);
+directionalLight.position.set(5, 10, 5);
+scene.add(directionalLight);
+
+const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.0);
+directionalLight2.position.set(-5, -5, -5);
+scene.add(directionalLight2);
+
+// Variables for animation
+let mixer;
+const clock = new THREE.Clock();
+const targetMouse = new THREE.Vector2(0.5, 0.5);
+const _revealVec = new THREE.Vector3(); // reused to project the model's center for the reveal origin
+const shaderUniforms = { 
+  time: { value: 0 },
+  mouse: { value: new THREE.Vector2(0.5, 0.5) },
+  resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+  bgColor: { value: new THREE.Color(0xf6fafe) },
+  colorCyan: { value: new THREE.Color(0x00aaff) },
+  colorPurple: { value: new THREE.Color(0x8000ff) },
+  colorBlue: { value: new THREE.Color(0x0091ff) },
+  colorPeach: { value: new THREE.Color(0xff0000) },
+  colorHotPink: { value: new THREE.Color(0xff0099) },
+  edgeBlurAmount: { value: 0.5 },
+  uRevealProgress: { value: 0.0 },
+  uRevealOrigin: { value: new THREE.Vector2(0.5, 0.5) }
+};
+const animatedMaterials = [];
+
+// --- Custom ASCII Background ---
+const bgGeo = new THREE.PlaneGeometry(2, 2);
+const bgMat = new THREE.ShaderMaterial({
+  uniforms: {
+    time: shaderUniforms.time,
+    mouse: shaderUniforms.mouse,
+    bgColor: shaderUniforms.bgColor,
+    resolution: shaderUniforms.resolution,
+    colorCyan: shaderUniforms.colorCyan,
+    colorBlue: shaderUniforms.colorBlue,
+    colorHotPink: shaderUniforms.colorHotPink,
+    colorPeach: shaderUniforms.colorPeach
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      // Lock the plane to the screen completely ignoring the camera
+      gl_Position = vec4(position.xy, 1.0, 1.0); 
+    }
+  `,
+  fragmentShader: `
+    uniform float time;
+    uniform vec2 mouse;
+    uniform vec3 bgColor;
+    uniform vec2 resolution;
+    uniform vec3 colorCyan;
+    uniform vec3 colorBlue;
+    uniform vec3 colorHotPink;
+    uniform vec3 colorPeach;
+    varying vec2 vUv;
+    
+    // 2D Rotation for organic noise
+    mat2 rotate2d(float _angle){
+        return mat2(cos(_angle),-sin(_angle),
+                    sin(_angle),cos(_angle));
+    }
+    
+    void main() {
+       float pixelSize = 15.0; 
+       vec2 screenUv = vUv; 
+       float aspect = resolution.x / resolution.y;
+       vec2 aspectUv = vec2(screenUv.x * aspect, screenUv.y);
+       
+       vec2 gridUv = aspectUv * (resolution.y / pixelSize);
+       vec2 localUv = fract(gridUv) - 0.5;
+       
+       // --- 1. Procedural Background Colors ---
+       float wave1 = sin(aspectUv.x * 4.0 - time * 0.8);
+       float wave2 = cos(aspectUv.y * 3.0 + time * 0.6);
+       float combinedWave = smoothstep(-0.8, 0.8, (wave1 + wave2) * 0.5);
+       float wavePeach = sin(aspectUv.y * 3.0 - aspectUv.x * 2.0 + time * 0.9) * 0.5 + 0.5;
+       
+       vec3 mixColor = mix(colorBlue, colorCyan, combinedWave);
+       vec3 pinkTransition = mix(mixColor, colorHotPink, smoothstep(0.1, 0.7, wavePeach));
+       mixColor = mix(pinkTransition, colorPeach, smoothstep(0.5, 1.0, wavePeach));
+       vec3 lightGridColor = mix(mixColor, vec3(1.0), 0.6);
+       
+       // --- 2. ASCII Grid ---
+       float boxSize = 0.3 + sin(time * 2.0 + gridUv.x * 0.2 + gridUv.y * 0.2) * 0.1;
+       float radius = 0.12; 
+       float d = length(max(abs(localUv) - (boxSize - radius), 0.0)) - radius;
+       float alpha = smoothstep(0.05, 0.0, d);
+       
+       // --- 3. Interactive Organic Masking ---
+       // Parallax radial mask: center shifts slightly towards the mouse
+       vec2 radialCenter = mix(vec2(0.5, 0.5), mouse, 0.3);
+       float radialMask = smoothstep(0.7, 0.1, distance(screenUv, radialCenter));
+       
+       vec2 p = aspectUv * 3.0;
+       
+       vec2 mouseAspect = vec2(mouse.x * aspect, mouse.y);
+       float mouseDist = distance(aspectUv, mouseAspect);
+       
+       // Multi-layered rotated sine waves for blobs
+       float noise = 0.0;
+       noise += sin(p.x + time * 0.4) * sin(p.y + time * 0.3);
+       p *= rotate2d(1.1);
+       noise += sin(p.x * 1.5 - time * 0.5) * sin(p.y * 1.5 + time * 0.2);
+       p *= rotate2d(2.3);
+       noise += sin(p.x * 2.0 + time * 0.3) * sin(p.y * 2.0 - time * 0.4);
+       
+       // Dynamic shape morphing instead of space warping (prevents stretched ray artifacts)
+       // Creates an organic ripple/push effect that morphs the blobs near the cursor
+       noise += cos(mouseDist * 12.0 - time * 3.0) * smoothstep(0.6, 0.0, mouseDist) * 1.2;
+       
+       float blobMask = smoothstep(0.0, 1.5, noise);
+       
+       // Extra interactive element: reveal ASCII grid brightly right at the cursor
+       float cursorHighlight = smoothstep(0.2, 0.0, mouseDist);
+       
+       float finalMask = clamp((radialMask * blobMask) + (cursorHighlight * 0.5), 0.0, 1.0);
+       float finalAlpha = alpha * finalMask * 0.85; 
+       
+       vec3 finalColor = mix(bgColor, lightGridColor, finalAlpha);
+       gl_FragColor = vec4(finalColor, 1.0);
+    }
+  `,
+  depthWrite: false, // Ensure it stays in the background
+  depthTest: false
+});
+const bgMesh = new THREE.Mesh(bgGeo, bgMat);
+bgMesh.renderOrder = -1; // Render before anything else
+bgMesh.frustumCulled = false;
+bgScene.add(bgMesh);
+
+// GUI Setup
+const guiParams = {
+  bgColor: '#f6fafe',
+  edgeBlur: 0.5,
+  colorCyan: '#00aaff',
+  colorPurple: '#8000ff',
+  colorBlue: '#0091ff',
+  colorPeach: '#ff0000',
+  colorHotPink: '#ff0099',
+  phase4X: -1.35,
+  phase4Y: -5.4,
+  phase4Z: 5.67,
+  phase4Scale: 0.85,
+  phase4RotX: 0,
+  phase4RotY: 0.6723,
+  phase4RotZ: 0
+};
+
+// Load the 3D model
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+
+const loader = new GLTFLoader();
+loader.setDRACOLoader(dracoLoader);
+loader.load(
+  'model.glb',
+  (gltf) => {
+    const model = gltf.scene;
+
+    // Auto center and scale the model so it always fits nicely
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    window.modelMaxDim = maxDim;
+    
+    // Scale model to a standard size
+    if (maxDim > 0) {
+      const scale = 5 / maxDim;
+      model.scale.setScalar(scale);
+      window.baseModelScale = scale; // Save the dynamic base scale for later animations
+    } else {
+      window.baseModelScale = 1.0;
+    }
+    
+    // Recalculate box after scaling to center it
+    const boxScaled = new THREE.Box3().setFromObject(model);
+    const centerScaled = boxScaled.getCenter(new THREE.Vector3());
+    model.position.sub(centerScaled); // Center at 0,0,0
+
+    // Apply the user's custom default coordinates and rotation
+    // Moved 70px (approx +0.7 units) to the right, and rotated 15 degrees clockwise on Y axis
+    model.position.set(0.1, -3.93, 4.17);
+    model.rotation.set(-0.05026, -0.92781, -0.12566);
+    
+    // Expose the model globally so the animate loop can access and move it
+    window.mainModel = model;
+    window.mainModel.visible = false; // Hidden until preloader finishes
+
+    // Offset the focal point to the left (-1.8) so the model appears on the right side.
+    // Set the focal target slightly higher (0.5) and camera lower (-1.0) for a heroic upward angle.
+    camera.position.set(-1.8, -1.0, 6.5);
+    camera.lookAt(-1.8, 0.5, 0);
+    controls.target.set(-1.8, 0.5, 0);
+    controls.update();
+    
+    // Add model controls to GUI once it's loaded
+    
+
+    // Advanced holographic procedural shader
+    // Reusable function to apply the shader to any material (works for normal meshes and InstancedMeshes)
+    window.applyHolographicShader = function(mat) {
+      mat.onBeforeCompile = (shader) => {
+        shader.uniforms.time = shaderUniforms.time;
+        shader.uniforms.colorCyan = shaderUniforms.colorCyan;
+        shader.uniforms.colorPurple = shaderUniforms.colorPurple;
+        shader.uniforms.colorBlue = shaderUniforms.colorBlue;
+        shader.uniforms.colorPeach = shaderUniforms.colorPeach;
+        shader.uniforms.colorHotPink = shaderUniforms.colorHotPink;
+        shader.uniforms.edgeBlurAmount = shaderUniforms.edgeBlurAmount;
+        shader.uniforms.uRevealProgress = shaderUniforms.uRevealProgress;
+        shader.uniforms.uRevealOrigin = shaderUniforms.uRevealOrigin;
+        shader.uniforms.resolution = shaderUniforms.resolution;
+        
+        shader.vertexShader = `
+          varying vec3 vLocalPosition;
+        ` + shader.vertexShader;
+
+        shader.vertexShader = shader.vertexShader.replace(
+          `#include <begin_vertex>`,
+          `#include <begin_vertex>
+           #ifdef USE_INSTANCING
+             vLocalPosition = (instanceMatrix * vec4(position, 1.0)).xyz;
+           #else
+             vLocalPosition = position;
+           #endif
+          `
+        );
+
+        shader.fragmentShader = `
+          uniform float time;
+          uniform float edgeBlurAmount;
+          uniform float uRevealProgress;
+          uniform vec2 uRevealOrigin;
+          uniform vec2 resolution;
+          uniform vec3 colorCyan;
+          uniform vec3 colorPurple;
+          uniform vec3 colorBlue;
+          uniform vec3 colorPeach;
+          uniform vec3 colorHotPink;
+          varying vec3 vLocalPosition;
+        ` + shader.fragmentShader;
+
+        shader.fragmentShader = shader.fragmentShader.replace(
+          `#include <dithering_fragment>`,
+          `#include <dithering_fragment>
+           vec3 vDir = normalize( vViewPosition );
+           float fresnel = 1.0 - max(dot(vDir, normal), 0.0);
+           float fresnelPow = pow(fresnel, 2.0); // Softer fresnel falloff
+           
+           // Procedural waves (softer, slower)
+           // Bind to local position so waves stick to the geometry during rotation
+           float wave1 = sin(vLocalPosition.x * 2.0 - time * 1.0);
+           float wave2 = cos(vLocalPosition.y * 1.5 + time * 0.8);
+           float wave3 = sin(vLocalPosition.z * 2.5 + time * 0.5);
+           float combinedWave = (wave1 + wave2 + wave3) / 3.0; 
+           combinedWave = smoothstep(-0.5, 0.5, combinedWave); // Softer mixing
+           
+           float wavePeachRaw = sin(vLocalPosition.y * 2.0 - vLocalPosition.x * 1.0 + time * 1.2);
+           // Normalize to 0..1 for clean blending
+           float wavePeach = wavePeachRaw * 0.5 + 0.5;
+           
+           // 1. Base cold colors (Blue -> Cyan)
+           vec3 mixColor = mix(colorBlue, colorCyan, combinedWave);
+           
+           // 2. Clean transition to warm colors
+           // Smooth, gentle transitions between the pastel tones
+           vec3 pinkTransition = mix(mixColor, colorHotPink, smoothstep(0.2, 0.8, wavePeach));
+           mixColor = mix(pinkTransition, colorPeach, smoothstep(0.5, 0.95, wavePeach));
+           
+           // 3. Purple rim light
+           mixColor = mix(mixColor, colorPurple, fresnel);
+           
+           // Glowing rim effect (softer)
+           vec3 glow = colorCyan * fresnelPow * 1.5;
+           
+           // Curved, softer lines
+           // Add distortion using X and Z to make the lines wavy/curved
+           float distortion = sin(vLocalPosition.x * 2.5 + time * 0.5) * 0.4 + cos(vLocalPosition.z * 2.0) * 0.4;
+           float curvedY = vLocalPosition.y + distortion;
+           
+           // Less quantity (multiplier 1.2), slower movement
+           float lines = fract((curvedY - time * 0.2) * 1.2);
+           
+           // Very soft transition for the lines
+           float lineIntensity = smoothstep(0.2, 0.6, lines) * smoothstep(1.0, 0.6, lines);
+           vec3 lineGlow = vec3(0.2, 0.8, 1.0) * lineIntensity * (0.3 + fresnel * 1.0);
+           
+           vec3 finalEmission = mixColor * 0.6 + glow + lineGlow;
+           
+           // --- ASCII Dynamic Shapes Effect ---
+           float pixelSize = 8.0; 
+           vec2 localUv = fract(gl_FragCoord.xy / pixelSize) - 0.5;
+           
+           float luma = dot(finalEmission, vec3(0.2126, 0.7152, 0.0722));
+           
+           // 1. Dynamic Size: scale dramatically based on brightness
+           float currentSize = clamp(luma * 1.2, 0.05, 0.45);
+           
+           // 2. Dynamic Shape: morph from square to circle based on color!
+           // wavePeach controls the warm colors. 
+           // 0.0 (Cold blue/cyan) = Sharp Squares
+           // 1.0 (Warm pink/peach) = Perfect Circles
+           float currentRadius = mix(0.0, currentSize, wavePeach);
+           
+           // SDF for dynamic rounded box
+           float d = length(max(abs(localUv) - (currentSize - currentRadius), 0.0)) - currentRadius;
+           float shapeAlpha = smoothstep(1.5 / pixelSize, 0.0, d);
+           
+           // Keep discard for the ASCII grid so depth sorting works correctly
+           if (shapeAlpha < 0.1) discard;
+           
+           // Soften/blur the geometric edges of the model using the fresnel angle
+           // Dynamic blur controlled by the slider (0.0 = sharp, 1.0 = extreme blur)
+           float edgeStart = mix(1.0, 0.7, edgeBlurAmount);
+           float edgeEnd = mix(0.99, 0.1, edgeBlurAmount);
+           float edgeBlur = smoothstep(edgeStart, edgeEnd, fresnel);
+           
+           finalEmission *= 1.2; // Boost brightness a bit
+           
+           // --- SPECTACULAR 2D SCREEN-SPACE REVEAL ---
+           // We use screen coordinates so the reveal is perfectly consistent 
+           // regardless of how the 3D model is scaled or offset internally!
+           vec2 screenUv = gl_FragCoord.xy / resolution.xy;
+           screenUv.x *= resolution.x / resolution.y; // correct aspect ratio
+           
+           // Only carve out the reveal DURING the intro animation. Once it completes the discard is
+           // fully disabled, so the model can NEVER be hidden again no matter where it flies during
+           // the scroll choreography (fixes the model vanishing when scrolling into the finale).
+           if (uRevealProgress < 0.999) {
+             // Reveal emanates from the model's ACTUAL on-screen center (updated every frame on the CPU).
+             vec2 revealOrigin = uRevealOrigin;
+             float distFromCenter2D = distance(screenUv, revealOrigin);
+
+             // Expand radius generously so the whole model is guaranteed to be revealed by the end.
+             float currentRadius2D = uRevealProgress * 3.0;
+
+             // Add digital grid noise based on pixel coordinates for a dissolving edge.
+             float gridRandom = fract(sin(dot(floor(gl_FragCoord.xy / 8.0), vec2(12.9898, 78.233))) * 43758.5453);
+             // Fade the noise out as the reveal completes so nothing stays permanently carved away.
+             float noisyRadius2D = currentRadius2D - gridRandom * 0.15 * (1.0 - uRevealProgress);
+
+             if (distFromCenter2D > noisyRadius2D) {
+               discard;
+             }
+
+             // Glowing edge at the expansion border
+             float revealEdge = smoothstep(noisyRadius2D - 0.05, noisyRadius2D, distFromCenter2D);
+             vec3 revealGlow = colorHotPink * revealEdge * 3.0 + colorCyan * pow(revealEdge, 4.0) * 8.0;
+             finalEmission += revealGlow;
+           }
+           
+           // Multiply alpha by edgeBlur to make the silhouette soft and blurry
+           gl_FragColor = vec4(gl_FragColor.rgb + finalEmission, gl_FragColor.a * shapeAlpha * edgeBlur);
+          `
+        );
+      };
+    };
+
+    model.traverse((child) => {
+      if (child.isMesh) {
+        const baseMat = new THREE.MeshPhysicalMaterial({
+          color: 0x010103, // Very dark, almost black
+          metalness: 0.9,
+          roughness: 0.2,
+          clearcoat: 1.0,
+          clearcoatRoughness: 0.1,
+          transparent: true,
+          opacity: 0.95,
+          side: THREE.DoubleSide
+        });
+        
+        window.applyHolographicShader(baseMat);
+        
+        child.material = baseMat;
+      }
+    });
+
+
+    scene.add(model);
+    
+    // Save reference for fading out
+    model.traverse(c => { if(c.isMesh) window.mainModelMaterial = c.material; });
+
+    // Phase 5: Load SVG Logo to Canvas and setup particle system
+    window.logoParticles = null;
+    
+    const img = new Image();
+    img.src = 'logo.svg';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      
+      const aspect = img.height / img.width;
+      
+      // Even higher resolution for a massive increase in particle density
+      canvas.width = 450; 
+      canvas.height = Math.floor(450 * aspect);
+      
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      
+      const validPoints = [];
+      const getAlpha = (x, y) => {
+        if (x < 0 || x >= canvas.width || y < 0 || y >= canvas.height) return 0;
+        return imgData.data[(y * canvas.width + x) * 4 + 3];
+      };
+      
+      // Use thickness to create a 3D block
+      const thickness = 0.25; // Thin profile so the logo looks unified, not fragmented
+      
+      for (let y = 0; y < canvas.height; y++) {
+        for (let x = 0; x < canvas.width; x++) {
+          const alpha = getAlpha(x, y);
+          if (alpha > 128) {
+            // Front and Back faces
+            validPoints.push({ x, y, z: thickness/2, isAmbient: 0.0 });
+            validPoints.push({ x, y, z: -thickness/2, isAmbient: 0.0 });
+            
+            // If it's an edge pixel, spawn particles to form the sides
+            if (getAlpha(x-1, y) < 128 || getAlpha(x+1, y) < 128 || getAlpha(x, y-1) < 128 || getAlpha(x, y+1) < 128) {
+               const sidePoints = 3; // Fewer side points needed since it's thinner
+               for (let s = 1; s < sidePoints; s++) {
+                 const zPos = -thickness/2 + (thickness * s / sidePoints);
+                 validPoints.push({ x, y, z: zPos, isAmbient: 0.0 });
+               }
+            }
+          }
+        }
+      }
+      
+      // Ambient Particles for Background Depth
+      const ambientCount = 3500; // Increased for a thicker galaxy
+      for (let i = 0; i < ambientCount; i++) {
+        validPoints.push({
+          x: canvas.width / 2 + (Math.random() - 0.5) * canvas.width * 3.0,
+          y: canvas.height / 2 + (Math.random() - 0.5) * canvas.height * 10.0,
+          z: (Math.random() - 0.5) * 20.0, // Massive Z spread for depth
+          isAmbient: 1.0
+        });
+      }
+      
+      const logoScale = 5.7 / canvas.width; 
+      
+      const particleCount = validPoints.length;
+      const positions = new Float32Array(particleCount * 3);
+      const randomPositions = new Float32Array(particleCount * 3);
+      const delays = new Float32Array(particleCount); 
+      const isAmbientArray = new Float32Array(particleCount);
+      
+      for (let i = 0; i < particleCount; i++) {
+        const pt = validPoints[i];
+        
+        // Organic Jitter to break the perfect pixel grid
+        const jitterX = (Math.random() - 0.5) * 1.2;
+        const jitterY = (Math.random() - 0.5) * 1.2;
+        const jitterZ = (Math.random() - 0.5) * 0.1;
+        
+        // Target Layout (Local Space, centered at 0,0,0)
+        const targetX = (pt.x + jitterX - (canvas.width / 2)) * logoScale; 
+        const targetY = -(pt.y + jitterY - (canvas.height / 2)) * logoScale; 
+        const targetZ = pt.z + jitterZ; 
+        
+        positions[i * 3 + 0] = targetX;
+        positions[i * 3 + 1] = targetY;
+        positions[i * 3 + 2] = targetZ;
+        
+        // Random Origin: Organized cylindrical scatter (Local Space)
+        const angle = Math.random() * Math.PI * 2;
+        const radius = 25 + Math.random() * 25; // Wide spread to fill the screen
+        const randX = Math.cos(angle) * radius;
+        const randY = (Math.random() - 0.5) * 45; // Tall column
+        const randZ = Math.sin(angle) * radius; // Perfect radial symmetry!
+        
+        randomPositions[i * 3 + 0] = randX;
+        randomPositions[i * 3 + 1] = randY;
+        randomPositions[i * 3 + 2] = randZ;
+        
+        // Base delay on distance from center for a cool radial assembly effect
+        const distFromCenter = Math.sqrt(Math.pow(pt.x - canvas.width/2, 2) + Math.pow(pt.y - canvas.height/2, 2));
+        const normalizedDist = distFromCenter / (canvas.width/2);
+        delays[i] = Math.random() * 0.5 + normalizedDist * 0.5; 
+        
+        isAmbientArray[i] = pt.isAmbient || 0.0;
+      }
+      
+      const particleGeo = new THREE.BufferGeometry();
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      particleGeo.setAttribute('aRandomPosition', new THREE.BufferAttribute(randomPositions, 3));
+      particleGeo.setAttribute('aDelay', new THREE.BufferAttribute(delays, 1));
+      particleGeo.setAttribute('aIsAmbient', new THREE.BufferAttribute(isAmbientArray, 1));
+      
+      const particleMat = new THREE.ShaderMaterial({
+        uniforms: {
+          time: shaderUniforms.time,
+          uProgress: { value: 0.0 },
+          uScale: { value: 1.0 },
+          uShatterFade: { value: 0.0 }, // Fades out the logo particles during shatter
+          colorCyan: shaderUniforms.colorCyan,
+          colorBlue: shaderUniforms.colorBlue,
+          colorPeach: shaderUniforms.colorPeach,
+          colorHotPink: shaderUniforms.colorHotPink
+        },
+        vertexShader: `
+          uniform float time;
+          uniform float uProgress;
+          uniform float uScale;
+          attribute vec3 aRandomPosition;
+          attribute float aDelay;
+          attribute float aIsAmbient;
+          varying vec3 vLocalPosition;
+          varying float vIsAmbient;
+          
+          void main() {
+            vLocalPosition = position; 
+            vIsAmbient = aIsAmbient;
+            
+            float safeProgress = clamp(uProgress, 0.0, 1.0);
+            
+            float startThreshold = aDelay * 0.4;
+            float particleProgress = clamp((safeProgress - startThreshold) / (1.0 - startThreshold), 0.0, 1.0);
+            
+            // Sharper ease out so they snap firmly into place
+            float rushEase = 1.0 - pow(1.0 - particleProgress, 4.0);
+            
+            // Clean Spin: rotate the random position around Y axis (Local Space)
+            float spin = (1.0 - particleProgress) * 10.0;
+            float s = sin(spin);
+            float c = cos(spin);
+            
+            vec3 spiraledPos = aRandomPosition;
+            spiraledPos.x = aRandomPosition.x * c - aRandomPosition.z * s;
+            spiraledPos.z = aRandomPosition.x * s + aRandomPosition.z * c;
+            
+            // FLATTEN the depth of shattered particles so they stay close to the camera 
+            // and don't shrink into tiny specks due to 3D perspective!
+            spiraledPos.z *= 0.15;
+            
+            // Smooth vertical convergence without crazy noise
+            spiraledPos.y = mix(spiraledPos.y, position.y, rushEase);
+            
+            vec3 currentPos = mix(spiraledPos, position, rushEase);
+            
+            // Add continuous slow drift to ambient particles AND shattered logo particles!
+            // rushEase is 1.0 when assembled, 0.0 when scattered. 
+            // So (1.0 - rushEase) makes them drift only when scattered!
+            float driftFactor = (aIsAmbient > 0.5) ? 1.0 : (1.0 - rushEase);
+            if (driftFactor > 0.01) {
+               currentPos.x += sin(time * 0.4 + aRandomPosition.y) * 1.5 * driftFactor;
+               currentPos.y += cos(time * 0.3 + aRandomPosition.x) * 1.5 * driftFactor;
+               currentPos.z += sin(time * 0.5 + aRandomPosition.z) * 1.5 * driftFactor;
+            }
+            
+            vec4 mvPosition = modelViewMatrix * vec4(currentPos, 1.0);
+            
+            // Expand the base size of shattered logo particles by 4x to counteract any depth shrinking
+            float shatterBoost = mix(4.5, 1.0, rushEase);
+            float baseSize = (aIsAmbient > 0.5 ? 40.0 : (16.0 * shatterBoost)) * uScale;
+            
+            // Point size attenuation with less aggressive clamping
+            gl_PointSize = clamp(baseSize / max(0.5, -mvPosition.z), 4.0, 120.0); 
+            
+            gl_Position = projectionMatrix * mvPosition;
+          }
+        `,
+        fragmentShader: `
+          uniform float time;
+          uniform float uProgress;
+          uniform float uShatterFade;
+          uniform vec3 colorCyan;
+          uniform vec3 colorBlue;
+          uniform vec3 colorPeach;
+          uniform vec3 colorHotPink;
+          varying vec3 vLocalPosition;
+          varying float vIsAmbient;
+          
+          void main() {
+            vec2 cxy = 2.0 * gl_PointCoord - 1.0;
+            float r = dot(cxy, cxy);
+            if (r > 1.0) discard;
+            
+            float dist = sqrt(r);
+            // Stronger core, softer edge for a denser "juicy" look without additive washout
+            float glow = smoothstep(1.0, 0.2, dist);
+            
+            // Spatial Gradient + Flowing Time Animation
+            float waveX = sin(time * 1.5) * 1.5; 
+            float waveY = cos(time * 1.2) * 0.8;
+            
+            // Map ambient particles into the gradient bounds so they shimmer too
+            float effX = vIsAmbient > 0.5 ? mod(vLocalPosition.x + time, 6.0) - 3.0 : vLocalPosition.x;
+            float effY = vIsAmbient > 0.5 ? mod(vLocalPosition.y + time, 2.0) - 1.0 : vLocalPosition.y;
+            
+            float tX = smoothstep(-3.0, 3.0, effX + waveX);
+            float tY = smoothstep(-1.0, 1.0, effY + waveY);
+            
+            // Bilinear blend of 4 colors
+            vec3 leftColor = mix(colorBlue, colorCyan, tY);
+            vec3 rightColor = mix(colorHotPink, colorPeach, tY);
+            
+            // Boost the vibrancy of the colors to make them "juicy"
+            vec3 finalColor = mix(leftColor, rightColor, tX) * 1.4;
+            
+            // Fade out logo particles during the final shatter phase, but keep ambient particles fully visible
+            float alphaMultiplier = vIsAmbient > 0.5 ? 1.0 : (1.0 - uShatterFade);
+            
+            // Global fade-in to prevent abrupt popping when they first appear
+            float globalFadeIn = smoothstep(0.0, 0.15, uProgress);
+            
+            gl_FragColor = vec4(finalColor, glow * alphaMultiplier * globalFadeIn);
+          }
+        `,
+        transparent: true,
+        depthWrite: false, // Prevent particle sorting issues
+        blending: THREE.NormalBlending // Correct blending for vibrant colors on white backgrounds
+      });
+      
+      window.logoParticles = new THREE.Points(particleGeo, particleMat);
+      // Place the entire particle group at the exact focal point in world space
+      window.logoParticles.position.set(-0.6, -2.0, -3.0);
+      window.logoParticles.frustumCulled = false; 
+      window.logoParticles.visible = false;
+      scene.add(window.logoParticles);
+    };
+
+    // Setup animation
+    if (gltf.animations && gltf.animations.length > 0) {
+      mixer = new THREE.AnimationMixer(model);
+      gltf.animations.forEach((clip) => {
+        mixer.clipAction(clip).play();
+      });
+    }
+  },
+  undefined,
+  (error) => {
+    console.error('An error happened while loading the model:', error);
+    const errDiv = document.createElement('div');
+    errDiv.style.cssText = 'position:absolute;top:10px;left:10px;color:red;background:white;padding:10px;border:2px solid red;z-index:9999;font-family:sans-serif;';
+    errDiv.innerText = 'Error loading model: ' + (error.message || error);
+    document.body.appendChild(errDiv);
+  }
+);
+
+// Helper function to animate flying words smoothly (original from clarix main.js)
+function updateWordAnimation(el, p, start, end, stopAtCenter = false) {
+  if (!el) return;
+  if (p <= start) {
+    el.style.opacity = '0';
+    return;
+  }
+  
+  let localP = (p - start) / (end - start);
+  
+  if (!stopAtCenter && localP >= 1.0) {
+    el.style.opacity = '0';
+    return;
+  }
+  
+  let xOff, yOff, rotY, zOff;
+  
+  if (stopAtCenter && localP > 1.0) {
+    // Word 3 (growth) exit transition: Fly straight upwards and fade out completely into background
+    const extraP = Math.min(1.0, (localP - 1.0) / 0.25); 
+    const easeIn = extraP * extraP; 
+    
+    xOff = 0; // Stays centered horizontally
+    yOff = -(easeIn * 100); // Fly straight up (negative Y offset)
+    rotY = 0; // Face camera flat
+    
+    const parentOpacity = Math.max(0, 1 - easeIn);
+    el.style.opacity = parentOpacity.toString();
+    
+    if (el.children.length > 0) {
+      const speedMultipliers = [0.8, 1.4, 0.5, 1.7, 0.9, 1.2]; 
+      for (let i = 0; i < el.children.length; i++) {
+        const child = el.children[i];
+        const speed = speedMultipliers[i % speedMultipliers.length];
+        const extraY = -(easeIn * 60 * speed);
+        const blurAmount = easeIn * 24 * speed; 
+        
+        child.style.transform = `translate3d(0, ${extraY}vh, 0)`;
+        child.style.opacity = parentOpacity.toString();
+        child.style.filter = blurAmount > 0.1 ? `blur(${blurAmount}px)` : 'none';
+      }
+    }
+  } else {
+    // Smooth Easing Functions
+    const sineInOut = (t) => 0.5 - Math.cos(t * Math.PI) / 2;
+    
+    if (stopAtCenter) {
+      xOff = 1400 - sineInOut(localP) * 1400; 
+    } else {
+      xOff = 1400 - sineInOut(localP) * 3100;
+    }
+    
+    // Round trajectory: swing closer to camera (Z) and arch slightly upwards (Y) in the center
+    const distRatio = Math.max(0, 1.0 - Math.abs(xOff) / 1400);
+    zOff = -800 + distRatio * 600; // Swing closer (from -800 to -200)
+    yOff = -distRatio * 5; // Arch slightly upwards (from 0 to -5vh)
+    
+    rotY = -(xOff / 800) * 50; // Dynamic 3D perspective rotation
+    
+    // Staggered Fly-In and Fly-Out Logic for individual letters
+    if (el.children.length > 0) {
+      const totalChars = el.children.length;
+      for (let i = 0; i < totalChars; i++) {
+        const child = el.children[i];
+        const delay = (i / totalChars) * 0.25;
+        const flyInDuration = 0.35;
+        let childP = (localP - delay) / flyInDuration;
+        childP = Math.max(0, Math.min(1.0, childP));
+        
+        let childOpacity = Math.min(1.0, childP / 0.5); // Fade in
+        let childBlur = 24 - (childP * 24); // Gaussian blur fading in from 24px to 0
+        
+        // Exit to the left logic (Word 1 & 2 only)
+        if (!stopAtCenter) {
+          const outDelay = (i / totalChars) * 0.15; 
+          let outP = (localP - (0.50 + outDelay)) / 0.25; 
+          outP = Math.max(0, Math.min(1.0, outP));
+          
+          if (outP > 0) {
+            childBlur = outP * 24; // Gaussian blur fading out to 24px
+            childOpacity = Math.min(childOpacity, 1.0 - outP); // Fade out to 0
+          }
+        }
+        
+        child.style.transform = 'translate3d(0, 0, 0)'; 
+        child.style.opacity = childOpacity.toString();
+        child.style.filter = childBlur > 0.1 ? `blur(${childBlur}px)` : 'none';
+      }
+      el.style.opacity = '1';
+    } else {
+      let opacity = 1.0;
+      if (localP < 0.1) opacity = localP / 0.1;
+      else if (!stopAtCenter && localP > 0.8) opacity = 1.0 - (localP - 0.8) / 0.2;
+      el.style.opacity = opacity.toString();
+    }
+  }
+  
+  const extraYOffset = el.id === 'word1' ? 100 : 25;
+  el.style.transform = `translate3d(calc(-50% + ${xOff}px), calc(-50% + ${yOff}vh + ${extraYOffset}px), ${zOff}px) rotateY(${rotY}deg)`;
+}
+
+window.localWordsProgress = 0;
+window.wordsTimer = 0;
+window.wordsSpacerInView = false;
+let scrollProgress = 0;
+// Dampen the upscaling so it doesn't get ridiculously huge on 4K monitors
+let _ratio = window.innerWidth / 1200;
+let responsiveScale = _ratio <= 1.0 ? _ratio : 1.0 + (_ratio - 1.0) * 0.4; // Grows at 40% speed above 1200px
+
+window.addEventListener('scroll', () => {
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+  // Reserve the last 100vh of the page as a pure "pause" where the animation stays at 100%
+  const pauseScroll = window.innerHeight * 1;
+  const animationMaxScroll = Math.max(1, maxScroll - pauseScroll);
+  
+  scrollProgress = window.scrollY / animationMaxScroll;
+  scrollProgress = Math.max(0, Math.min(scrollProgress, 1.0)); // Clamp between 0 and 1
+
+
+});
+
+// Grab HTML elements for word animations
+const word1 = document.getElementById('word1');
+const word2 = document.getElementById('word2');
+const word3 = document.getElementById('word3');
+const glassContainer = document.getElementById('glass-container');
+
+// Helper function to animate flying words smoothly
+
+
+// Event Listeners
+window.addEventListener('mousemove', (event) => {
+  // Update target mouse for delayed lerp (Shader expects 0.0 to 1.0 UV coordinates)
+  targetMouse.x = event.clientX / window.innerWidth;
+  targetMouse.y = 1.0 - (event.clientY / window.innerHeight);
+});
+
+// Resize handler
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  rendererBg.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  shaderUniforms.resolution.value.set(window.innerWidth, window.innerHeight);
+  
+  // Update 3D scale proportionality (damped upscaling)
+  let _newRatio = window.innerWidth / 1200;
+  responsiveScale = _newRatio <= 1.0 ? _newRatio : 1.0 + (_newRatio - 1.0) * 0.4;
+});
+
+// --- PRELOADER SETUP ---
+let preloaderDone = false;
+let preloaderCurrentPercent = 0;
+let preloaderTargetPercent = 0;
+let preloaderShatter = 0.0;
+
+const preloaderPointsGeo = new THREE.PlaneGeometry(4, 4);
+const preloaderPointsMat = new THREE.ShaderMaterial({
+  uniforms: {
+    time: shaderUniforms.time,
+    colorCyan: shaderUniforms.colorCyan,
+    colorPurple: shaderUniforms.colorPurple,
+    colorBlue: shaderUniforms.colorBlue,
+    colorPeach: shaderUniforms.colorPeach,
+    colorHotPink: shaderUniforms.colorHotPink,
+    uShatter: { value: 0.0 }
+  },
+  vertexShader: `
+    uniform float uShatter;
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      vec3 pos = position;
+      // Expand while scattering
+      pos *= (1.0 + uShatter * 2.0); 
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform float time;
+    uniform float uShatter;
+    uniform vec3 colorCyan;
+    uniform vec3 colorPurple;
+    uniform vec3 colorBlue;
+    uniform vec3 colorPeach;
+    uniform vec3 colorHotPink;
+    varying vec2 vUv;
+    
+    void main() {
+      vec2 center = vec2(0.5, 0.5);
+      vec2 st = vUv - center;
+      
+      float angle = atan(st.y, st.x);
+      float radius = length(st);
+      
+      // Dynamic fluid wobble
+      float wobble = sin(angle * 3.0 + time * 1.5) * 0.03 + cos(angle * 2.0 - time) * 0.04;
+      float maxRadius = 0.35 + wobble;
+      
+      // Scatter/Expand logic
+      float currentRadius = maxRadius * (1.0 + uShatter * 1.5);
+      
+      // Soft alpha edge
+      float alpha = smoothstep(currentRadius + 0.08, currentRadius - 0.02, radius);
+      
+      // Dissolve noise during shatter
+      float shatterNoise = fract(sin(dot(vUv * 10.0, vec2(12.9898, 78.233))) * 43758.5453);
+      alpha -= (shatterNoise * uShatter * 2.0);
+      alpha *= (1.0 - uShatter); // Fade out completely
+      
+      if (alpha <= 0.01) discard;
+      
+      // Organic color gradients
+      vec2 p = vUv * 2.0 - 1.0;
+      float wave1 = sin(p.x * 2.0 - time * 1.0);
+      float wave2 = cos(p.y * 1.5 + time * 0.8);
+      float combinedWave = smoothstep(-0.5, 0.5, (wave1 + wave2)/2.0);
+      
+      float wavePeach = sin(p.y * 2.0 - p.x * 1.0 + time * 1.2) * 0.5 + 0.5;
+      
+      vec3 mixColor = mix(colorBlue, colorCyan, combinedWave);
+      vec3 pinkTransition = mix(mixColor, colorHotPink, smoothstep(0.2, 0.8, wavePeach));
+      mixColor = mix(pinkTransition, colorPeach, smoothstep(0.5, 0.95, wavePeach));
+      
+      // Purple edge
+      mixColor = mix(mixColor, colorPurple, smoothstep(0.2, 0.45, radius));
+      // Soften colors by mixing towards white
+      mixColor = mix(mixColor, vec3(1.0), 0.35); // 35% lighter/pastel
+      
+      gl_FragColor = vec4(mixColor, alpha);
+    }
+  `,
+  transparent: true,
+  depthWrite: false
+});
+const preloaderPoints = new THREE.Mesh(preloaderPointsGeo, preloaderPointsMat);
+preloaderPoints.position.set(-1.8, -0.25, 4.5); // Move closer to camera to overlap exactly in the center
+preloaderPoints.lookAt(-1.8, -1.0, 6.5); // Face the camera perfectly
+scene.add(preloaderPoints);
+
+const odoNumbers = document.getElementById('odometer-numbers');
+let odoHTML = '';
+for(let i=0; i<=100; i++) {
+  // Use 4rem to match the large font size, and pad with 0s to eliminate gaps!
+  const paddedNum = String(i).padStart(3, '0');
+  odoHTML += `<div style="height: 4rem; line-height: 4rem; display: flex; align-items: center; justify-content: center;">${paddedNum}</div>`;
+}
+if (odoNumbers) odoNumbers.innerHTML = odoHTML;
+
+// --- HERO TEXT SPLIT LOGIC ---
+function initTitles() {
+  const titleEls = document.querySelectorAll('#animated-hero-title, .animated-title');
+  titleEls.forEach(titleEl => {
+    const childNodes = Array.from(titleEl.childNodes);
+    titleEl.innerHTML = '';
+    
+    function processNode(node, targetParent) {
+      if (node.nodeType === 3) { // Text Node
+        const text = node.textContent;
+        if (text.trim() === '') {
+          targetParent.appendChild(document.createTextNode(text));
+          return;
+        }
+        
+        const chars = text.split('');
+        chars.forEach(char => {
+          if (char === ' ' || char === '\n' || char === '\t') {
+            // Keep normal whitespace as a regular text node so HTML collapses it correctly, avoiding massive indents!
+            targetParent.appendChild(document.createTextNode(char));
+          } else {
+            const mask = document.createElement('span');
+            mask.className = 'char-mask';
+            const charSpan = document.createElement('span');
+            charSpan.className = 'hero-char';
+            charSpan.textContent = char;
+            mask.appendChild(charSpan);
+            targetParent.appendChild(mask);
+          }
+        });
+      } else if (node.nodeType === 1) { // Element
+        if (node.tagName === 'BR') {
+          targetParent.appendChild(node.cloneNode());
+        } else {
+          const cloned = node.cloneNode(false);
+          Array.from(node.childNodes).forEach(child => processNode(child, cloned));
+          targetParent.appendChild(cloned);
+        }
+      }
+    }
+    
+    childNodes.forEach(node => processNode(node, titleEl));
+  });
+
+  // Intersection Observer for titles in normal scroll flow (plays in reverse when exiting viewport)
+  const titleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Guard for hero title: only auto-reveal via observer if preloader is fully done
+        if (!preloaderDone && entry.target.id === 'animated-hero-title') return;
+
+        const chars = entry.target.querySelectorAll('.hero-char');
+        chars.forEach((char, index) => {
+          setTimeout(() => {
+            if (entry.isIntersecting) {
+              char.classList.add('revealed');
+            }
+          }, index * 10); // Ultra-fast 10ms stagger
+        });
+      } else {
+        const chars = entry.target.querySelectorAll('.hero-char');
+        chars.forEach(char => {
+          char.classList.remove('revealed');
+        });
+      }
+    });
+  }, { threshold: 0.05 }); // Trigger with smaller threshold for responsive in/out animations
+
+  document.querySelectorAll('.animated-title.flow-title, #animated-hero-title').forEach(el => titleObserver.observe(el));
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTitles);
+} else {
+  initTitles();
+}
+
+const triggeredSelectors = new Set();
+function triggerTextReveal(selector) {
+  if (triggeredSelectors.has(selector)) return;
+  
+  const chars = document.querySelectorAll(`${selector} .hero-char`);
+  if (chars.length === 0) return;
+  
+  triggeredSelectors.add(selector);
+  
+  chars.forEach((char, index) => {
+    setTimeout(() => {
+      if (triggeredSelectors.has(selector)) {
+        char.classList.add('revealed');
+      }
+    }, index * 10); // Ultra-fast 10ms stagger
+  });
+}
+
+function untriggerTextReveal(selector) {
+  if (!triggeredSelectors.has(selector)) return;
+  
+  triggeredSelectors.delete(selector);
+  
+  const chars = document.querySelectorAll(`${selector} .hero-char`);
+  chars.forEach(char => {
+    char.classList.remove('revealed');
+  });
+}
+
+// Stepped loader: snap the target to 0 → 25 → 50 → 75 → 100 with a short hold between
+// each step. The animate loop smoothly rolls the visible counter up to each target, so the
+// number visibly climbs, pauses, climbs again — a deliberate, premium cadence instead of a
+// slow continuous crawl.
+const loaderSteps = [25, 50, 75, 100];
+let loaderStepIndex = 0;
+function advanceLoader() {
+  if (loaderStepIndex >= loaderSteps.length) return;
+  preloaderTargetPercent = loaderSteps[loaderStepIndex];
+  loaderStepIndex++;
+  setTimeout(advanceLoader, 300); // little delay between each step
+}
+setTimeout(advanceLoader, 200); // brief beat before the count begins
+
+// Animation Loop
+function animate(time) {
+  requestAnimationFrame(animate);
+  
+  // Update smooth scroll
+  if (time) lenis.raf(time);
+  
+  const delta = clock.getDelta();
+  
+  shaderUniforms.time.value += delta;
+
+  // Update HTML Flying Words using raw local progress of the spacer (100% tied to scroll, no delay/autoplay)
+  const wordsSpacer = document.getElementById('words-scroll-spacer');
+  const wordsContainer = document.querySelector('.words-container');
+  if (wordsSpacer && typeof updateWordAnimation === 'function') {
+    const rect = wordsSpacer.getBoundingClientRect();
+    const viewHeight = window.innerHeight;
+    const localProgress = (viewHeight - rect.top) / rect.height;
+    
+    if (rect.top < viewHeight && rect.bottom > 0) {
+      if (wordsContainer) {
+        let opacity = 1.0;
+        if (localProgress > 0.76) {
+          opacity = Math.max(0, 1.0 - (localProgress - 0.76) / 0.14);
+        }
+        wordsContainer.style.opacity = opacity.toFixed(3);
+        wordsContainer.style.visibility = opacity > 0.01 ? 'visible' : 'hidden';
+      }
+      
+      updateWordAnimation(word1, localProgress, 0.00, 0.24);
+      updateWordAnimation(word2, localProgress, 0.16, 0.40);
+      updateWordAnimation(word3, localProgress, 0.32, 0.56, true);
+    } else {
+      if (wordsContainer) {
+        wordsContainer.style.opacity = '0';
+        wordsContainer.style.visibility = 'hidden';
+      }
+    }
+  }
+  preloaderPointsMat.uniforms.time.value = shaderUniforms.time.value;
+  
+  // Smoothly interpolate mouse position for delayed interactive effect
+  shaderUniforms.mouse.value.lerp(targetMouse, delta * 3.0);
+
+  // Cinematic Scroll Transition
+  // We complete the screen transition in the first 15% of the scroll.
+  const transitionProgress = Math.min(1.0, scrollProgress / 0.12);
+
+  // Phase 3 Transition (0.40 to 0.54) - Glass slides up
+  const phase3Progress = Math.max(0, Math.min(1.0, (scrollProgress - 0.40) / 0.14));
+
+  // Phase 4: 0.54 -> 0.68 (Glass block flies away)
+  const phase4Progress = Math.max(0, Math.min(1.0, (scrollProgress - 0.54) / 0.14));
+
+  // Phase 5: 0.68 -> 0.80 (Camera pushes deep into the scene, particles assemble)
+  // Finishes assembling at 0.80, then holds while the logo floats
+  const phase5Progress = Math.max(0, Math.min(1.0, (scrollProgress - 0.68) / 0.12));
+
+  // Model Fly-In: 0.86 -> 1.00 (generous range so the finale + footer never feel rushed)
+  // Starts after a short pause (0.80 to 0.86) where the assembled logo just floats
+  const modelFlyInProgress = Math.max(0, Math.min(1.0, (scrollProgress - 0.86) / 0.14));
+
+  // Logo Shatter: 0.86 -> 1.00
+  // Starts exactly with the model fly-in
+  const logoShatterProgress = Math.max(0, Math.min(1.0, (scrollProgress - 0.86) / 0.14));
+  
+  // Animate the Phase 4 text container
+  const phase4Container = document.getElementById('phase4-container');
+  if (phase4Container) {
+    if (phase4Progress > 0 && phase4Progress < 1.0) {
+      let opacity = 1.0;
+      let yOffset = 0;
+      
+      if (phase4Progress < 0.2) {
+        const p = phase4Progress / 0.2; // Fade in smoothly
+        opacity = p;
+        yOffset = 50 * (1 - p); // Slide up
+      } else if (phase4Progress > 0.8) {
+        const p = (phase4Progress - 0.8) / 0.2; // Fade out smoothly
+        opacity = 1 - p;
+        yOffset = -50 * p; // Continue sliding up and out
+      }
+      
+      phase4Container.style.opacity = opacity.toString();
+      phase4Container.style.transform = `translateY(${yOffset}px)`;
+      phase4Container.style.pointerEvents = opacity > 0.5 ? 'auto' : 'none';
+      
+      if (opacity > 0.7) {
+        triggerTextReveal('#phase4-title');
+      } else {
+        untriggerTextReveal('#phase4-title');
+      }
+    } else {
+      phase4Container.style.opacity = '0';
+      phase4Container.style.pointerEvents = 'none';
+    }
+  }
+  
+  // Animate the Phase 5 text container (Particle Logo Section)
+  const phase5Container = document.getElementById('phase5-container');
+  if (phase5Container) {
+    if (scrollProgress >= 0.68 && scrollProgress <= 1.0) {
+      let opacity = 0;
+      if (scrollProgress < 0.74) {
+        // Stay hidden until particles are mostly assembled
+        opacity = 0;
+      } else if (scrollProgress < 0.78) {
+        // Fade in quickly
+        opacity = (scrollProgress - 0.74) / 0.04;
+      } else if (scrollProgress < 0.82) {
+        // Hold during pause
+        opacity = 1.0;
+      } else if (scrollProgress < 0.86) {
+        // Fade out BEFORE phase 6 starts
+        opacity = 1.0 - ((scrollProgress - 0.82) / 0.04);
+      } else {
+        opacity = 0;
+      }
+      phase5Container.style.opacity = Math.max(0, Math.min(1, opacity)).toString();
+      
+      if (opacity > 0.7) {
+        triggerTextReveal('#phase5-title-1');
+        triggerTextReveal('#phase5-title-2');
+      } else {
+        untriggerTextReveal('#phase5-title-1');
+        untriggerTextReveal('#phase5-title-2');
+      }
+    } else {
+      phase5Container.style.opacity = '0';
+    }
+  }
+  
+  // Animate the Phase 6 text container (Final Scene)
+  const phase6Container = document.getElementById('phase6-container');
+  const phase6Footer = document.getElementById('phase6-footer');
+  if (phase6Container) {
+    if (scrollProgress >= 0.86) {
+      // Fade in across the final stretch so the finale breathes
+      const opacity = (scrollProgress - 0.86) / 0.14;
+      const boundedOpacity = Math.max(0, Math.min(1, opacity));
+      phase6Container.style.opacity = boundedOpacity.toString();
+      
+      // Slide up the footer instead of fading (fixes Chrome backdrop-filter bugs)
+      const easeOutFooter = 1.0 - Math.pow(1.0 - boundedOpacity, 3);
+      const footerY = 100 * (1 - easeOutFooter);
+      if (phase6Footer) phase6Footer.style.transform = `translateY(${footerY}vh)`;
+      
+      // Slight scale-up for dramatic effect
+      const scale = 0.95 + (0.05 * boundedOpacity);
+      phase6Container.style.transform = `scale(${scale})`;
+      
+      if (boundedOpacity > 0.7) {
+        triggerTextReveal('#phase6-title');
+      } else {
+        untriggerTextReveal('#phase6-title');
+      }
+    } else {
+      phase6Container.style.opacity = '0';
+      if (phase6Footer) phase6Footer.style.transform = `translateY(100vh)`;
+    }
+  }
+  
+  // Move camera and target X to -0.6 (model's exact center)
+  // Move camera and target Y lower to vertically center the model
+  const targetCamX = THREE.MathUtils.lerp(-1.8, -0.6, transitionProgress);
+  const targetFocusX = THREE.MathUtils.lerp(-1.8, -0.6, transitionProgress);
+  
+  const targetCamY = THREE.MathUtils.lerp(-1.0, -2.0, transitionProgress);
+  const targetFocusY = THREE.MathUtils.lerp(0.5, -2.0, transitionProgress);
+  
+  // In Phase 3, zoom in. In Phase 5, fly deep into the logo!
+  const phase3CamZ = THREE.MathUtils.lerp(7.5, 7.15, phase3Progress);
+  const targetCamZ = THREE.MathUtils.lerp(6.5, phase3CamZ, transitionProgress);
+  const finalCamZ = THREE.MathUtils.lerp(targetCamZ, 0.5, phase5Progress); // Deep push forward
+
+  // Custom lerp that snaps to the target to prevent infinite floating point GUI updates
+  const snapLerp = (current, target, speed) => {
+    if (Math.abs(target - current) < 0.0001) return target;
+    return THREE.MathUtils.lerp(current, target, speed);
+  };
+  
+  const lerpSpeed = delta * 6.0;
+
+  // --- PRELOADER ANIMATION LOGIC ---
+  if (!preloaderDone) {
+    if (preloaderCurrentPercent < preloaderTargetPercent) {
+      preloaderCurrentPercent += delta * 180; // roll speed between steps
+      if (preloaderCurrentPercent > preloaderTargetPercent) preloaderCurrentPercent = preloaderTargetPercent;
+      
+      if (odoNumbers) {
+        odoNumbers.style.transform = `translateY(-${preloaderCurrentPercent * 4}rem)`;
+      }
+    }
+    
+    // When hit 100%, start shatter
+    if (preloaderCurrentPercent >= 100) {
+      preloaderShatter += delta * 2.0; // Shatter timer (~0.5s)
+      
+      // Ease-in cubic: expands slowly at first, then accelerates rapidly outwards!
+      const easeInShatter = Math.pow(preloaderShatter, 3.0);
+      preloaderPointsMat.uniforms.uShatter.value = easeInShatter;
+      
+      if (preloaderShatter > 1.0) {
+        preloaderDone = true;
+        preloaderPoints.visible = false;
+        
+        // Reveal content
+        if (window.mainModel) window.mainModel.visible = true;
+        
+        const preloaderHTML = document.getElementById('preloader');
+        if (preloaderHTML) preloaderHTML.style.opacity = '0';
+        
+        const hiddenElements = document.querySelectorAll('.preload-hidden');
+        hiddenElements.forEach(el => el.classList.remove('preload-hidden'));
+        
+        // Stagger ONLY the hero title characters at load
+        const chars = document.querySelectorAll('#animated-hero-title .hero-char');
+        setTimeout(() => {
+          chars.forEach((char, index) => {
+            setTimeout(() => {
+              char.classList.add('revealed');
+            }, index * 25); // 25ms stagger per letter
+          });
+        }, 150); // slight delay after preloader fades out
+      }
+    }
+    
+    // Prevent scrolling while preloader is active!
+    window.scrollTo(0, 0);
+    scrollProgress = 0;
+  }
+
+  // Apply with smooth inertia and snapping
+  camera.position.x = snapLerp(camera.position.x, targetCamX, lerpSpeed);
+  camera.position.y = snapLerp(camera.position.y, targetCamY, lerpSpeed);
+  camera.position.z = snapLerp(camera.position.z, finalCamZ, lerpSpeed);
+  controls.target.x = snapLerp(controls.target.x, targetFocusX, lerpSpeed);
+  controls.target.y = snapLerp(controls.target.y, targetFocusY, lerpSpeed);
+
+  // Cinematic Scroll Transition for Model
+  if (window.mainModel) {
+    // Interpolate model position using the fast transitionProgress
+    const baseModelX = THREE.MathUtils.lerp(-0.6, -0.5, transitionProgress);
+    const baseModelY = THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
+    const baseModelZ = THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
+    
+    // In Phase 4, lerp to the exact GUI settings so the user can test visually
+    const targetModelX = THREE.MathUtils.lerp(baseModelX, guiParams.phase4X, phase4Progress);
+    const targetModelY = THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
+    const targetModelZ = THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
+    
+    // Model Fly-In: We want the model to snap exactly to its center at the very end
+    const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
+    
+    // Lowered final Y to -5.2 as requested, shifted slightly to -0.4
+    const p6ModelX = THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
+    const p6ModelY = THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
+    const p6ModelZ = THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
+    
+    // Mouse Interactive Rotation for the Model (subtler than the logo)
+    const pointerX = targetMouse.x * 2 - 1;
+    const pointerY = targetMouse.y * 2 - 1;
+    const mouseRotX = pointerY * 0.05; // Less vertical tilt
+    const mouseRotY = pointerX * 0.10; // Less horizontal turn
+    
+    // Interpolate model rotation
+    // Sync with the autoplay words timer when active, otherwise fall back to global scrollProgress
+        const wordsSpacerCheck = document.getElementById('words-scroll-spacer');
+    let rotProgress = Math.max(0, Math.min(1.0, (scrollProgress - 0.12) / 0.28));
+    if (wordsSpacerCheck) {
+      const rect = wordsSpacerCheck.getBoundingClientRect();
+      const viewHeight = window.innerHeight;
+      const localProgress = (viewHeight - rect.top) / rect.height;
+      if (rect.top < viewHeight && rect.bottom > 0) {
+        rotProgress = Math.max(0, Math.min(1.0, localProgress / 0.76));
+      }
+    }
+    
+    const targetModelRotX = THREE.MathUtils.lerp(-0.05026, -0.2, transitionProgress);
+    const finalRotX = THREE.MathUtils.lerp(targetModelRotX, guiParams.phase4RotX, phase4Progress);
+    const p6RotX = THREE.MathUtils.lerp(finalRotX, 0.0 + mouseRotX, p6Ease); 
+    
+    // Rotate 180 degrees (Math.PI) during the initial scroll (0 to 0.15) while moving down
+    const initialRotY = -0.92781;
+    const transitionRotY = THREE.MathUtils.lerp(initialRotY, initialRotY + Math.PI, transitionProgress);
+    // Then continue spinning seamlessly from that point to a full circle during rotProgress
+    const baseRotY = THREE.MathUtils.lerp(transitionRotY, Math.PI * 2, rotProgress);
+    const finalRotY = THREE.MathUtils.lerp(baseRotY, guiParams.phase4RotY, phase4Progress);
+    const p6RotY = THREE.MathUtils.lerp(finalRotY, 0.0 + mouseRotY, p6Ease);
+    
+    const targetModelRotZ = THREE.MathUtils.lerp(-0.12566, 0.0, transitionProgress);
+    const finalRotZ = THREE.MathUtils.lerp(targetModelRotZ, guiParams.phase4RotZ, phase4Progress);
+    const p6RotZ = THREE.MathUtils.lerp(finalRotZ, 0.0, p6Ease);
+    
+    window.mainModel.position.x = snapLerp(window.mainModel.position.x, p6ModelX, lerpSpeed);
+    window.mainModel.position.y = snapLerp(window.mainModel.position.y, p6ModelY, lerpSpeed);
+    window.mainModel.position.z = snapLerp(window.mainModel.position.z, p6ModelZ, lerpSpeed);
+    
+    window.mainModel.rotation.x = snapLerp(window.mainModel.rotation.x, p6RotX, lerpSpeed);
+    window.mainModel.rotation.y = snapLerp(window.mainModel.rotation.y, p6RotY, lerpSpeed);
+    window.mainModel.rotation.z = snapLerp(window.mainModel.rotation.z, p6RotZ, lerpSpeed);
+    
+    // Phase 4: Model scales down to GUI setting
+    const baseScale = window.baseModelScale || 1.0;
+    const finalScale = baseScale * guiParams.phase4Scale;
+    const targetScale = THREE.MathUtils.lerp(baseScale, finalScale, phase4Progress);
+    if (!window.currentModelScale) window.currentModelScale = baseScale;
+    window.currentModelScale = snapLerp(window.currentModelScale, targetScale, lerpSpeed);
+    window.mainModel.scale.set(window.currentModelScale, window.currentModelScale, window.currentModelScale);
+    
+    // Phase 5: Fade out the model, Phase 6: Fade back in!
+    if (window.mainModelMaterial) {
+      let targetOpacity = 0.95;
+      if (modelFlyInProgress > 0) {
+        // Fade in rapidly during the first half of Phase 6
+        targetOpacity = THREE.MathUtils.lerp(0.0, 0.95, Math.min(1.0, modelFlyInProgress * 2.0));
+      } else if (phase5Progress > 0) {
+        // Fade out rapidly during the first half of Phase 5
+        targetOpacity = THREE.MathUtils.lerp(0.95, 0.0, Math.min(1.0, phase5Progress * 2.0));
+      }
+
+      // Check if products, services, or words section is in viewport to move model behind it
+      const productsContainer = document.querySelector('.products-section-container');
+      const servicesContainer = document.querySelector('.services-section-container');
+      const wordsSection = document.getElementById('words-scroll-section');
+      const canvasForeground = renderer.domElement;
+      const canvasBackground = rendererBg.domElement;
+
+      if (canvasBackground && canvasBackground.style.zIndex !== '0') {
+        canvasBackground.style.zIndex = '0';
+      }
+
+      if (window.modelOpacityMultiplier === undefined) {
+        window.modelOpacityMultiplier = 1.0;
+      }
+
+      let targetOpacityMultiplier = 1.0;
+      let isBehind = false;
+      if (productsContainer) {
+        const rect = productsContainer.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15) {
+          isBehind = true;
+        }
+      }
+      if (servicesContainer) {
+        const rect = servicesContainer.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15) {
+          isBehind = true;
+        }
+      }
+      if (wordsSection) {
+        const rect = wordsSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15) {
+          isBehind = true;
+        }
+      }
+      if (isBehind) {
+        targetOpacityMultiplier = 0.45; // Fade to 45% when behind cards
+      }
+
+      window.modelOpacityMultiplier = THREE.MathUtils.lerp(
+        window.modelOpacityMultiplier,
+        targetOpacityMultiplier,
+        delta * 5.0 // Smooth interpolation
+      );
+
+      if (canvasForeground) {
+        // Swap z-index immediately based on isBehind for instant responsiveness
+        if (isBehind) {
+          canvasForeground.style.zIndex = '1'; // Behind scroll content wrapper (zIndex: 2)
+        } else {
+          canvasForeground.style.zIndex = '3'; // In front
+        }
+      }
+
+      window.mainModelMaterial.opacity = targetOpacity * window.modelOpacityMultiplier;
+    }
+
+    // Keep the intro reveal centered on the model's real screen position. getWorldPosition forces a
+    // world-matrix update, project() maps it to NDC, then we convert into the shader's aspect-corrected
+    // screenUv space so the reveal circle always grows from the model — even if it moves mid-reveal.
+    if (shaderUniforms.uRevealProgress.value < 0.999) {
+      window.mainModel.getWorldPosition(_revealVec);
+      _revealVec.project(camera);
+      shaderUniforms.uRevealOrigin.value.set(
+        (_revealVec.x * 0.5 + 0.5) * (window.innerWidth / window.innerHeight),
+        _revealVec.y * 0.5 + 0.5
+      );
+    }
+  }
+
+  // Phase 5: Assemble Logo Particles via GPU
+  if (window.logoParticles) {
+    if (phase5Progress > 0) {
+      window.logoParticles.visible = true;
+      
+      let targetProgress = phase5Progress;
+      let targetFade = 0.0;
+      
+      // Phase 6: Logo shatters and fades out
+      if (logoShatterProgress > 0) {
+        // Use smoothstep for the master timeline
+        const explodeEase = THREE.MathUtils.smoothstep(logoShatterProgress, 0.0, 1.0);
+        
+        // MATHEMATICAL FIX: The vertex shader uses a pow(..., 4.0) curve for assembling the particles so they snap into place.
+        // When played backwards linearly, it causes them to stay assembled too long and then violently explode at the end.
+        // By taking the 0.3 power of our ease, we mathematically counteract the shader's pow(4) curve, 
+        // making the explosion buttery smooth and perfectly gradual across the entire scroll range!
+        targetProgress = 1.0 - Math.pow(explodeEase, 0.3);
+        
+        targetFade = 0.0; // KEEP THEM VISIBLE! Never fade out!
+      }
+      
+      // Smoothly animate the progress uniform instead of snapping instantly
+      window.logoParticles.material.uniforms.uProgress.value = snapLerp(
+        window.logoParticles.material.uniforms.uProgress.value,
+        targetProgress,
+        lerpSpeed * 1.5
+      );
+      
+      // Update fade out uniform
+      window.logoParticles.material.uniforms.uShatterFade.value = snapLerp(
+        window.logoParticles.material.uniforms.uShatterFade.value,
+        targetFade,
+        lerpSpeed * 1.5
+      );
+      
+      // Rotate logo based on mouse cursor (scaled by phase5Progress so it only fully rotates when assembled)
+      const pointerX = targetMouse.x * 2 - 1;
+      const pointerY = targetMouse.y * 2 - 1;
+      
+      const targetRotX = pointerY * 0.15 * phase5Progress; // Slight vertical tilt
+      const targetRotY = pointerX * 0.25 * phase5Progress;  // Slight horizontal turn
+      
+      window.logoParticles.rotation.x = snapLerp(window.logoParticles.rotation.x, targetRotX, lerpSpeed);
+      window.logoParticles.rotation.y = snapLerp(window.logoParticles.rotation.y, targetRotY, lerpSpeed);
+      
+      // Phase 6: Logo scales up by an additional 20% (Total 40% -> 1.4)
+      // Uses the exact same p6Ease curve as the model
+      const p6Ease = THREE.MathUtils.smoothstep(modelFlyInProgress, 0.0, 1.0);
+      const targetScale = THREE.MathUtils.lerp(1.0, 1.4, p6Ease) * responsiveScale;
+      
+      // Apply the same snapLerp damping as the model so they move at the exact same physical speed
+      const currentScale = window.logoParticles.scale.x;
+      const smoothScale = snapLerp(currentScale, targetScale, lerpSpeed);
+      window.logoParticles.scale.set(smoothScale, smoothScale, smoothScale);
+      window.logoParticles.material.uniforms.uScale.value = smoothScale;
+      
+    } else {
+      window.logoParticles.visible = false;
+      window.logoParticles.material.uniforms.uProgress.value = 0.0;
+      window.logoParticles.rotation.x = 0;
+      window.logoParticles.rotation.y = 0;
+      window.logoParticles.scale.set(1, 1, 1);
+      window.logoParticles.material.uniforms.uScale.value = 1.0;
+    }
+  }
+
+  // Horizontal flying words are handled in the scroll listener via DOM layout section
+
+  // Phase 3 & 4 Final Transitions: Slide glass container
+  if (glassContainer) {
+    const glassGradient = document.getElementById('glass-gradient');
+    
+    if (scrollProgress <= 0.54) {
+      const easeIn = phase3Progress * phase3Progress; // Accelerate upwards matching word3
+      const glassY = 100 - (easeIn * 100); 
+      glassContainer.style.transform = `translateY(${glassY}vh)`;
+      if (glassY < 60) {
+        triggerTextReveal('#phase3-title');
+      } else {
+        untriggerTextReveal('#phase3-title');
+      }
+      
+      if (glassGradient) {
+        // Animate scale from 0.65 to 1, and border-radius from 0 to 24px
+        const currentScale = 0.65 + (0.35 * phase3Progress);
+        glassGradient.style.transform = `translate(-50%, -50%) scale(${currentScale})`;
+        glassGradient.style.borderRadius = `${phase3Progress * 24}px`;
+      }
+    } else {
+      // Phase 4: Glass leaves out the top
+      const easeOut = 1 - Math.pow(1 - phase4Progress, 3); // Smooth departure
+      const glassY = -(easeOut * 100);
+      glassContainer.style.transform = `translateY(${glassY}vh)`;
+      
+      if (glassGradient) {
+        glassGradient.style.transform = `translate(-50%, -50%) scale(1)`;
+        glassGradient.style.borderRadius = `24px`;
+      }
+    }
+  }
+
+  if (mixer) {
+    mixer.update(delta);
+  }
+
+  // Animate the spectacular reveal (slower and smoother)
+  // Only start the reveal AFTER the preloader finishes scattering!
+  if (preloaderDone && shaderUniforms.uRevealProgress.value < 0.999) {
+    if (!window.revealStartTime) {
+      // Delay model reveal by 0.5s so the text gets a head start
+      window.revealStartTime = shaderUniforms.time.value + 0.5; 
+    }
+    const elapsed = shaderUniforms.time.value - window.revealStartTime;
+    
+    if (elapsed > 0) {
+      // Exactly 2.3 seconds to match the total text stagger duration
+      let progress = Math.min(1.0, elapsed / 2.3);
+      
+      // Cubic ease out for perfectly smooth deceleration
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      shaderUniforms.uRevealProgress.value = easeOutCubic;
+    }
+  }
+
+  controls.update();
+
+  rendererBg.render(bgScene, camera);
+  renderer.render(scene, camera);
+}
+
+// --- PRODUCTS CARDS INTERACTIVITY ---
+function initCardsInteractivity() {
+  const cards = document.querySelectorAll('.product-card, .service-card');
+  if (cards.length === 0) return;
+  
+  // 1. Intersection Observer for stagger fade-in (plays in reverse when exiting viewport)
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const isCard = entry.target.classList.contains('product-card') || entry.target.classList.contains('service-card');
+      if (entry.isIntersecting) {
+        if (isCard) {
+          const parent = entry.target.parentElement;
+          if (parent) {
+            const siblings = Array.from(parent.querySelectorAll('.product-card, .service-card'));
+            const index = siblings.indexOf(entry.target);
+            setTimeout(() => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('card-visible');
+              }
+            }, index * 120); // 120ms stagger
+          } else {
+            entry.target.classList.add('card-visible');
+          }
+        } else {
+          entry.target.classList.add('subtitle-visible');
+        }
+      } else {
+        if (isCard) {
+          entry.target.classList.remove('card-visible');
+        } else {
+          entry.target.classList.remove('subtitle-visible');
+        }
+      }
+    });
+  }, { threshold: 0.05 });
+  
+  cards.forEach(c => cardObserver.observe(c));
+  document.querySelectorAll('.services-section-subtitle').forEach(s => cardObserver.observe(s));
+  
+
+}
+
+document.addEventListener('DOMContentLoaded', initCardsInteractivity);
+initCardsInteractivity();
+
+animate();
+
+    </script>
+  </body>
+</html>
+
+</html>

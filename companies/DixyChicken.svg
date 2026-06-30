@@ -1,0 +1,25 @@
+<svg width="180" height="32" viewBox="0 0 180 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@700;800&amp;display=swap');
+      .dixy-red {
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 800;
+        font-size: 19px;
+        fill: #d11218;
+        letter-spacing: -0.01em;
+      }
+      .dixy-yellow {
+        font-family: 'Sarabun', sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        fill: #ffb700;
+        letter-spacing: -0.01em;
+      }
+    </style>
+  </defs>
+  <!-- Star icon centered at y=16 -->
+  <path d="M18 5 L20.5 11.5 L27 12.5 L22 17.5 L23.5 24 L18 20.5 L12.5 24 L14 17.5 L9 12.5 L15.5 11.5 Z" fill="#d11218"/>
+  <text x="36" y="22" class="dixy-red">DIXY</text>
+  <text x="82" y="22" class="dixy-yellow">CHICKEN</text>
+</svg>
