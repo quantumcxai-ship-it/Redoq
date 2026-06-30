@@ -1181,34 +1181,50 @@
         gap: 2rem;
       }
 
-      /* 8. Phase 5 Container (Convert from absolute grids to stacked layout) */
+      /* 8. Phase 5 Container (Clean corner layouts with mobile safety padding) */
       .phase5-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 5rem 1.25rem;
+        padding: 0;
         box-sizing: border-box;
       }
       .phase5-label-right {
-        position: static;
-        margin-bottom: 1.5rem;
-        width: auto;
+        position: absolute !important;
+        top: 1.5rem !important;
+        right: 1.25rem !important;
+        left: auto !important;
+        margin: 0 !important;
+        width: auto !important;
+        font-size: 0.85rem !important;
       }
       .phase5-title-left {
-        position: static;
-        margin-bottom: 1rem;
-        text-align: left;
+        position: absolute !important;
+        top: 3.5rem !important;
+        left: 1.25rem !important;
+        right: 1.25rem !important;
+        margin: 0 !important;
+        font-size: 1.6rem !important;
+        line-height: 1.2 !important;
+        white-space: normal !important;
       }
       .phase5-desc-left {
-        position: static;
-        margin-bottom: 1.5rem;
-        max-width: none;
-        text-align: left;
+        position: absolute !important;
+        bottom: 6rem !important;
+        left: 1.25rem !important;
+        right: 1.25rem !important;
+        margin: 0 !important;
+        max-width: none !important;
+        font-size: 0.95rem !important;
+        line-height: 1.4 !important;
       }
       .phase5-title-right {
-        position: static;
-        text-align: left;
+        position: absolute !important;
+        bottom: 1.5rem !important;
+        left: 1.25rem !important;
+        right: 1.25rem !important;
+        margin: 0 !important;
+        font-size: 1.6rem !important;
+        line-height: 1.2 !important;
+        text-align: left !important;
+        white-space: normal !important;
       }
 
       /* 9. Phase 6 Container */
@@ -1933,9 +1949,12 @@ loader.load(
 
     // Offset the focal point to the left (-1.8) so the model appears on the right side.
     // Set the focal target slightly higher (0.5) and camera lower (-1.0) for a heroic upward angle.
-    camera.position.set(-1.8, -1.0, 6.5);
-    camera.lookAt(-1.8, 0.5, 0);
-    controls.target.set(-1.8, 0.5, 0);
+    // Center both horizontally on mobile viewports so the model doesn't get pushed off-screen.
+    const isMobile = window.innerWidth < 768;
+    const initialCamX = isMobile ? 0.0 : -1.8;
+    camera.position.set(initialCamX, -1.0, 6.5);
+    camera.lookAt(initialCamX, 0.5, 0);
+    controls.target.set(initialCamX, 0.5, 0);
     controls.update();
     
     // Add model controls to GUI once it's loaded
@@ -2184,7 +2203,8 @@ loader.load(
         });
       }
       
-      const logoScale = 5.7 / canvas.width; 
+      // Scale down particle logo on mobile screens to ensure it doesn't overlap text bounds
+      const logoScale = (window.innerWidth < 768 ? 3.0 : 5.7) / canvas.width; 
       
       const particleCount = validPoints.length;
       const positions = new Float32Array(particleCount * 3);
@@ -2918,8 +2938,12 @@ function animate(time) {
   
   // Move camera and target X to -0.6 (model's exact center)
   // Move camera and target Y lower to vertically center the model
-  const targetCamX = THREE.MathUtils.lerp(-1.8, -0.6, transitionProgress);
-  const targetFocusX = THREE.MathUtils.lerp(-1.8, -0.6, transitionProgress);
+  // Center horizontally on mobile viewports to prevent off-screen model clipping.
+  const isMobileViewport = window.innerWidth < 768;
+  const baseCamX = isMobileViewport ? 0.0 : -1.8;
+  const finalCamX = isMobileViewport ? 0.0 : -0.6;
+  const targetCamX = THREE.MathUtils.lerp(baseCamX, finalCamX, transitionProgress);
+  const targetFocusX = THREE.MathUtils.lerp(baseCamX, finalCamX, transitionProgress);
   
   const targetCamY = THREE.MathUtils.lerp(-1.0, -2.0, transitionProgress);
   const targetFocusY = THREE.MathUtils.lerp(0.5, -2.0, transitionProgress);
