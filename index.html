@@ -1942,7 +1942,7 @@ loader.load(
     // Center horizontally and match desktop scale (z=4.17) on mobile viewports.
     const isMobile = window.innerWidth < 768;
     const initModelX = isMobile ? 0.0 : 0.1;
-    const initModelY = isMobile ? -1.4 : -3.93;
+    const initModelY = isMobile ? -3.8 : -3.93;
     const initModelZ = isMobile ? 4.17 : 4.17;
     model.position.set(initModelX, initModelY, initModelZ);
     model.rotation.set(-0.05026, -0.92781, -0.12566);
@@ -1955,8 +1955,8 @@ loader.load(
     // Set the focal target slightly higher (0.5) and camera lower (-1.0) for a heroic upward angle.
     // Center both horizontally on mobile viewports so the model doesn't get pushed off-screen.
     const initialCamX = isMobile ? 0.0 : -1.8;
-    const initialCamY = isMobile ? -0.8 : -1.0;
-    const initialFocusY = isMobile ? -0.8 : 0.5;
+    const initialCamY = isMobile ? -1.0 : -1.0;
+    const initialFocusY = isMobile ? 0.5 : 0.5;
     camera.position.set(initialCamX, initialCamY, 6.5);
     camera.lookAt(initialCamX, initialFocusY, 0);
     controls.target.set(initialCamX, initialFocusY, 0);
@@ -2209,7 +2209,7 @@ loader.load(
       }
       
       // Scale down particle logo on mobile screens to ensure it doesn't overlap text bounds
-      const logoScale = (window.innerWidth < 768 ? 3.0 : 5.7) / canvas.width; 
+      const logoScale = (window.innerWidth < 768 ? 4.5 : 5.7) / canvas.width; 
       
       const particleCount = validPoints.length;
       const positions = new Float32Array(particleCount * 3);
@@ -2919,8 +2919,6 @@ function animate(time) {
       // Fade in across the final stretch so the finale breathes
       const opacity = (scrollProgress - 0.86) / 0.14;
       const boundedOpacity = Math.max(0, Math.min(1, opacity));
-      phase6Container.style.opacity = boundedOpacity.toString();
-      
       // Slide up the footer instead of fading (fixes Chrome backdrop-filter bugs)
       const easeOutFooter = 1.0 - Math.pow(1.0 - boundedOpacity, 3);
       const footerY = 100 * (1 - easeOutFooter);
@@ -2930,7 +2928,19 @@ function animate(time) {
       const scale = 0.95 + (0.05 * boundedOpacity);
       phase6Container.style.transform = `scale(${scale})`;
       
-      if (boundedOpacity > 0.7) {
+      // Fade out the fixed text on mobile viewports as the footer slides up to cover it
+      const isMobile = window.innerWidth < 768;
+      let textOpacity = boundedOpacity;
+      if (isMobile) {
+        if (scrollProgress < 0.92) {
+          textOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.86) / 0.06));
+        } else {
+          textOpacity = Math.max(0, Math.min(1, 1 - (scrollProgress - 0.92) / 0.06));
+        }
+      }
+      phase6Container.style.opacity = textOpacity.toString();
+      
+      if (textOpacity > 0.3) {
         triggerTextReveal('#phase6-title');
       } else {
         untriggerTextReveal('#phase6-title');
@@ -2950,8 +2960,8 @@ function animate(time) {
   const targetCamX = THREE.MathUtils.lerp(baseCamX, finalCamX, transitionProgress);
   const targetFocusX = THREE.MathUtils.lerp(baseCamX, finalCamX, transitionProgress);
   
-  const targetCamY = isMobileViewport ? -0.8 : THREE.MathUtils.lerp(-1.0, -2.0, transitionProgress);
-  const targetFocusY = isMobileViewport ? -0.8 : THREE.MathUtils.lerp(0.5, -2.0, transitionProgress);
+  const targetCamY = isMobileViewport ? -1.0 : THREE.MathUtils.lerp(-1.0, -2.0, transitionProgress);
+  const targetFocusY = isMobileViewport ? 0.5 : THREE.MathUtils.lerp(0.5, -2.0, transitionProgress);
   
   // In Phase 3, zoom in. In Phase 5, fly deep into the logo!
   const phase3CamZ = THREE.MathUtils.lerp(7.5, 7.15, phase3Progress);
@@ -3035,18 +3045,18 @@ function animate(time) {
     // Interpolate model position using the fast transitionProgress
     // Centered model positions on mobile with full desktop scale
     const baseModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(-0.6, -0.5, transitionProgress);
-    const baseModelY = isMobileViewport ? -1.4 : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
+    const baseModelY = isMobileViewport ? -3.8 : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
     const baseModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
     
     // In Phase 4, keep centered on mobile, otherwise lerp to GUI settings
     const targetModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(baseModelX, guiParams.phase4X, phase4Progress);
-    const targetModelY = isMobileViewport ? -1.4 : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
+    const targetModelY = isMobileViewport ? -3.8 : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
     const targetModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
     
     // Model Fly-In (Phase 6): Snap to center on mobile, otherwise lerp to desktop target
     const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
     const p6ModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
-    const p6ModelY = isMobileViewport ? -1.4 : THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
+    const p6ModelY = isMobileViewport ? -3.8 : THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
     const p6ModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
     
     // Mouse Interactive Rotation for the Model (subtler than the logo)
