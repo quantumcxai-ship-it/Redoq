@@ -1939,11 +1939,11 @@ loader.load(
     model.position.sub(centerScaled); // Center at 0,0,0
 
     // Apply the user's custom default coordinates and rotation
-    // Center horizontally and raise vertically on mobile viewports.
+    // Center horizontally and match desktop scale (z=4.17) on mobile viewports.
     const isMobile = window.innerWidth < 768;
     const initModelX = isMobile ? 0.0 : 0.1;
-    const initModelY = isMobile ? -2.2 : -3.93;
-    const initModelZ = isMobile ? 3.0 : 4.17;
+    const initModelY = isMobile ? -1.4 : -3.93;
+    const initModelZ = isMobile ? 4.17 : 4.17;
     model.position.set(initModelX, initModelY, initModelZ);
     model.rotation.set(-0.05026, -0.92781, -0.12566);
     
@@ -3024,22 +3024,30 @@ function animate(time) {
 
   // Cinematic Scroll Transition for Model
   if (window.mainModel) {
+    if (!window.modelTime) window.modelTime = 0;
+    window.modelTime += delta;
+    
+    // Subtle auto-floating and auto-rotation to make the model feel alive on mobile
+    const autoFloatY = Math.sin(window.modelTime * 1.5) * 0.08;
+    const autoRotX = Math.sin(window.modelTime * 0.8) * 0.03;
+    const autoRotY = Math.cos(window.modelTime * 0.6) * 0.05;
+
     // Interpolate model position using the fast transitionProgress
-    // Centered model positions on mobile to prevent off-screen clipping
+    // Centered model positions on mobile with full desktop scale
     const baseModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(-0.6, -0.5, transitionProgress);
-    const baseModelY = isMobileViewport ? -2.2 : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
-    const baseModelZ = isMobileViewport ? 3.0 : THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
+    const baseModelY = isMobileViewport ? -1.4 : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
+    const baseModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
     
     // In Phase 4, keep centered on mobile, otherwise lerp to GUI settings
     const targetModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(baseModelX, guiParams.phase4X, phase4Progress);
-    const targetModelY = isMobileViewport ? -2.2 : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
-    const targetModelZ = isMobileViewport ? 3.0 : THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
+    const targetModelY = isMobileViewport ? -1.4 : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
+    const targetModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
     
     // Model Fly-In (Phase 6): Snap to center on mobile, otherwise lerp to desktop target
     const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
     const p6ModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
-    const p6ModelY = isMobileViewport ? -2.2 : THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
-    const p6ModelZ = isMobileViewport ? 3.0 : THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
+    const p6ModelY = isMobileViewport ? -1.4 : THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
+    const p6ModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
     
     // Mouse Interactive Rotation for the Model (subtler than the logo)
     const pointerX = targetMouse.x * 2 - 1;
@@ -3077,11 +3085,11 @@ function animate(time) {
     const p6RotZ = THREE.MathUtils.lerp(finalRotZ, 0.0, p6Ease);
     
     window.mainModel.position.x = snapLerp(window.mainModel.position.x, p6ModelX, lerpSpeed);
-    window.mainModel.position.y = snapLerp(window.mainModel.position.y, p6ModelY, lerpSpeed);
+    window.mainModel.position.y = snapLerp(window.mainModel.position.y, p6ModelY + autoFloatY, lerpSpeed);
     window.mainModel.position.z = snapLerp(window.mainModel.position.z, p6ModelZ, lerpSpeed);
     
-    window.mainModel.rotation.x = snapLerp(window.mainModel.rotation.x, p6RotX, lerpSpeed);
-    window.mainModel.rotation.y = snapLerp(window.mainModel.rotation.y, p6RotY, lerpSpeed);
+    window.mainModel.rotation.x = snapLerp(window.mainModel.rotation.x, p6RotX + autoRotX, lerpSpeed);
+    window.mainModel.rotation.y = snapLerp(window.mainModel.rotation.y, p6RotY + autoRotY, lerpSpeed);
     window.mainModel.rotation.z = snapLerp(window.mainModel.rotation.z, p6RotZ, lerpSpeed);
     
     // Phase 4: Model scales down to GUI setting
