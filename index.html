@@ -1940,10 +1940,10 @@ loader.load(
 
     // Apply the user's custom default coordinates and rotation
     // Center horizontally and match desktop scale (z=4.17) on mobile viewports.
-    // Shifted model Y position down from -4.8 to -5.8 to resolve head clipping.
+    // Shifted model Y position to -4.0 to center it in Hero section.
     const isMobile = window.innerWidth < 768;
     const initModelX = isMobile ? 0.0 : 0.1;
-    const initModelY = isMobile ? -5.8 : -3.93;
+    const initModelY = isMobile ? -4.0 : -3.93;
     const initModelZ = isMobile ? 4.17 : 4.17;
     model.position.set(initModelX, initModelY, initModelZ);
     model.rotation.set(-0.05026, -0.92781, -0.12566);
@@ -2210,8 +2210,8 @@ loader.load(
       }
       
       // Scale down particle logo on mobile screens to ensure it doesn't overlap text bounds
-      // Mobile-optimized logo scale to fit narrow viewport widths without edge clipping.
-      const logoScale = (window.innerWidth < 768 ? 3.2 : 5.7) / canvas.width; 
+      // Mobile-optimized logo scale to fit narrow viewport widths without edge clipping (scaled down further to 2.4)
+      const logoScale = (window.innerWidth < 768 ? 2.4 : 5.7) / canvas.width; 
       
       const particleCount = validPoints.length;
       const positions = new Float32Array(particleCount * 3);
@@ -3045,21 +3045,21 @@ function animate(time) {
 
     // Interpolate model position using the fast transitionProgress
     // Centered model positions on mobile with dynamic interpolation (swaying)
-    // Lowered starting height to -5.8 to completely fix head clipping
+    // Starts at -4.0 (Hero) and sways down to -7.2 to avoid head clipping when camera tilts
     const baseModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(-0.6, -0.5, transitionProgress);
-    const baseModelY = isMobileViewport ? THREE.MathUtils.lerp(-5.8, -8.0, transitionProgress) : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
+    const baseModelY = isMobileViewport ? THREE.MathUtils.lerp(-4.0, -7.2, transitionProgress) : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
     const baseModelZ = THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
     
     // In Phase 4, keep centered on mobile, otherwise lerp to GUI settings
     const targetModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(baseModelX, guiParams.phase4X, phase4Progress);
-    const targetModelY = isMobileViewport ? THREE.MathUtils.lerp(baseModelY, -8.0, phase4Progress) : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
+    const targetModelY = isMobileViewport ? THREE.MathUtils.lerp(baseModelY, -7.2, phase4Progress) : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
     const targetModelZ = THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
     
-    // Model Fly-In (Phase 6): Float at y = -5.2 (same as desktop) to hide the legs behind the footer card and show the upper torso/head.
+    // Model Fly-In (Phase 6): Float at y = -5.8 on mobile (desktop -5.2) to hide the legs and keep head/torso visible above the footer card.
     // Animate depth coordinate forward to z = -1.0 (in front of camera) so it is visible
     const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
     const p6ModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
-    const p6ModelY = THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
+    const p6ModelY = THREE.MathUtils.lerp(targetModelY, isMobileViewport ? -5.8 : -5.2, p6Ease);
     const p6ModelZ = THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
     
     // Mouse Interactive Rotation for the Model (subtler than the logo)
@@ -3174,9 +3174,9 @@ function animate(time) {
       );
 
       if (canvasForeground) {
-        // Swap z-index immediately based on isBehind for instant responsiveness
-        if (isBehind) {
-          canvasForeground.style.zIndex = '1'; // Behind scroll content wrapper (zIndex: 2)
+        // Swap z-index on desktop, but keep it in front (z-index: 3) on mobile so it doesn't get swallowed behind full-width content blocks.
+        if (isBehind && !isMobileViewport) {
+          canvasForeground.style.zIndex = '1'; // Behind scroll content wrapper
         } else {
           canvasForeground.style.zIndex = '3'; // In front
         }
