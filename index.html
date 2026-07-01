@@ -3054,21 +3054,21 @@ function animate(time) {
     const autoRotY = Math.cos(window.modelTime * 0.6) * 0.05;
 
     // Interpolate model position using the fast transitionProgress
-    // Centered model positions on mobile with full desktop scale
-    // Lowered Y position by 1.0 unit on mobile to bring waist/torso into view
+    // Centered model positions on mobile with dynamic interpolation (swaying)
     const baseModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(-0.6, -0.5, transitionProgress);
-    const baseModelY = isMobileViewport ? -4.8 : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
-    const baseModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
+    const baseModelY = isMobileViewport ? THREE.MathUtils.lerp(-4.8, -7.0, transitionProgress) : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
+    const baseModelZ = THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
     
     // In Phase 4, keep centered on mobile, otherwise lerp to GUI settings
     const targetModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(baseModelX, guiParams.phase4X, phase4Progress);
-    const targetModelY = isMobileViewport ? -4.8 : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
-    const targetModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
+    const targetModelY = isMobileViewport ? THREE.MathUtils.lerp(baseModelY, -7.0, phase4Progress) : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
+    const targetModelZ = THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
     
     // Model Fly-In (Phase 6): Float at y = -2.4 on mobile to prevent getting covered by footer links or clipped at the top
+    // Animate depth coordinate forward to z = -1.0 (in front of camera) so it is visible
     const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
     const p6ModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
-    const p6ModelY = isMobileViewport ? -2.4 : THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
+    const p6ModelY = isMobileViewport ? THREE.MathUtils.lerp(targetModelY, -2.4, p6Ease) : THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
     const p6ModelZ = THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
     
     // Mouse Interactive Rotation for the Model (subtler than the logo)
