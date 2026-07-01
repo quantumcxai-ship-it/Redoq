@@ -1939,8 +1939,12 @@ loader.load(
     model.position.sub(centerScaled); // Center at 0,0,0
 
     // Apply the user's custom default coordinates and rotation
-    // Moved 70px (approx +0.7 units) to the right, and rotated 15 degrees clockwise on Y axis
-    model.position.set(0.1, -3.93, 4.17);
+    // Center horizontally and raise vertically on mobile viewports.
+    const isMobile = window.innerWidth < 768;
+    const initModelX = isMobile ? 0.0 : 0.1;
+    const initModelY = isMobile ? -2.2 : -3.93;
+    const initModelZ = isMobile ? 3.0 : 4.17;
+    model.position.set(initModelX, initModelY, initModelZ);
     model.rotation.set(-0.05026, -0.92781, -0.12566);
     
     // Expose the model globally so the animate loop can access and move it
@@ -1950,11 +1954,12 @@ loader.load(
     // Offset the focal point to the left (-1.8) so the model appears on the right side.
     // Set the focal target slightly higher (0.5) and camera lower (-1.0) for a heroic upward angle.
     // Center both horizontally on mobile viewports so the model doesn't get pushed off-screen.
-    const isMobile = window.innerWidth < 768;
     const initialCamX = isMobile ? 0.0 : -1.8;
-    camera.position.set(initialCamX, -1.0, 6.5);
-    camera.lookAt(initialCamX, 0.5, 0);
-    controls.target.set(initialCamX, 0.5, 0);
+    const initialCamY = isMobile ? -0.8 : -1.0;
+    const initialFocusY = isMobile ? -0.8 : 0.5;
+    camera.position.set(initialCamX, initialCamY, 6.5);
+    camera.lookAt(initialCamX, initialFocusY, 0);
+    controls.target.set(initialCamX, initialFocusY, 0);
     controls.update();
     
     // Add model controls to GUI once it's loaded
@@ -2945,8 +2950,8 @@ function animate(time) {
   const targetCamX = THREE.MathUtils.lerp(baseCamX, finalCamX, transitionProgress);
   const targetFocusX = THREE.MathUtils.lerp(baseCamX, finalCamX, transitionProgress);
   
-  const targetCamY = THREE.MathUtils.lerp(-1.0, -2.0, transitionProgress);
-  const targetFocusY = THREE.MathUtils.lerp(0.5, -2.0, transitionProgress);
+  const targetCamY = isMobileViewport ? -0.8 : THREE.MathUtils.lerp(-1.0, -2.0, transitionProgress);
+  const targetFocusY = isMobileViewport ? -0.8 : THREE.MathUtils.lerp(0.5, -2.0, transitionProgress);
   
   // In Phase 3, zoom in. In Phase 5, fly deep into the logo!
   const phase3CamZ = THREE.MathUtils.lerp(7.5, 7.15, phase3Progress);
@@ -3020,22 +3025,21 @@ function animate(time) {
   // Cinematic Scroll Transition for Model
   if (window.mainModel) {
     // Interpolate model position using the fast transitionProgress
-    const baseModelX = THREE.MathUtils.lerp(-0.6, -0.5, transitionProgress);
-    const baseModelY = THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
-    const baseModelZ = THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
+    // Centered model positions on mobile to prevent off-screen clipping
+    const baseModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(-0.6, -0.5, transitionProgress);
+    const baseModelY = isMobileViewport ? -2.2 : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
+    const baseModelZ = isMobileViewport ? 3.0 : THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
     
-    // In Phase 4, lerp to the exact GUI settings so the user can test visually
-    const targetModelX = THREE.MathUtils.lerp(baseModelX, guiParams.phase4X, phase4Progress);
-    const targetModelY = THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
-    const targetModelZ = THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
+    // In Phase 4, keep centered on mobile, otherwise lerp to GUI settings
+    const targetModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(baseModelX, guiParams.phase4X, phase4Progress);
+    const targetModelY = isMobileViewport ? -2.2 : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
+    const targetModelZ = isMobileViewport ? 3.0 : THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
     
-    // Model Fly-In: We want the model to snap exactly to its center at the very end
+    // Model Fly-In (Phase 6): Snap to center on mobile, otherwise lerp to desktop target
     const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
-    
-    // Lowered final Y to -5.2 as requested, shifted slightly to -0.4
-    const p6ModelX = THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
-    const p6ModelY = THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
-    const p6ModelZ = THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
+    const p6ModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
+    const p6ModelY = isMobileViewport ? -2.2 : THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
+    const p6ModelZ = isMobileViewport ? 3.0 : THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
     
     // Mouse Interactive Rotation for the Model (subtler than the logo)
     const pointerX = targetMouse.x * 2 - 1;
