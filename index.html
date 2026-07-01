@@ -3045,13 +3045,14 @@ function animate(time) {
 
     // Interpolate model position using the fast transitionProgress
     // Centered model positions on mobile, otherwise identical to desktop curves
+    // Raised Y bounds on mobile to keep the torso/head visible and centered throughout transitions
     const baseModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(-0.6, -0.5, transitionProgress);
-    const baseModelY = THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress); // Matches desktop exactly
+    const baseModelY = isMobileViewport ? THREE.MathUtils.lerp(-3.93, -5.2, transitionProgress) : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
     const baseModelZ = THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);     // Matches desktop exactly
     
     // In Phase 4, keep centered on mobile, otherwise lerp to GUI settings
     const targetModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(baseModelX, guiParams.phase4X, phase4Progress);
-    const targetModelY = THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress); // Matches desktop exactly
+    const targetModelY = isMobileViewport ? THREE.MathUtils.lerp(baseModelY, -4.5, phase4Progress) : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
     const targetModelZ = THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress); // Matches desktop exactly
     
     // Model Fly-In (Phase 6): Float at y = -5.2 (same as desktop) to hide the legs and keep head/torso visible above the footer card.
