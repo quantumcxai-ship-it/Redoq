@@ -1924,9 +1924,10 @@ loader.load(
     const maxDim = Math.max(size.x, size.y, size.z);
     window.modelMaxDim = maxDim;
     
-    // Scale model to a standard size
+    // Scale model to a standard size (3.6 on mobile, 5.0 on desktop to prevent any cropping/head cuts)
     if (maxDim > 0) {
-      const scale = 5 / maxDim;
+      const isMobile = window.innerWidth < 768;
+      const scale = (isMobile ? 3.6 : 5.0) / maxDim;
       model.scale.setScalar(scale);
       window.baseModelScale = scale; // Save the dynamic base scale for later animations
     } else {
@@ -1939,12 +1940,11 @@ loader.load(
     model.position.sub(centerScaled); // Center at 0,0,0
 
     // Apply the user's custom default coordinates and rotation
-    // Center horizontally and match desktop scale (z=4.17) on mobile viewports.
-    // Shifted model Y position to -4.0 to center it in Hero section.
+    // Center horizontally on mobile viewports, otherwise use desktop offsets.
     const isMobile = window.innerWidth < 768;
     const initModelX = isMobile ? 0.0 : 0.1;
-    const initModelY = isMobile ? -4.0 : -3.93;
-    const initModelZ = isMobile ? 4.17 : 4.17;
+    const initModelY = -3.93; // Matches desktop exactly
+    const initModelZ = 4.17;  // Matches desktop exactly
     model.position.set(initModelX, initModelY, initModelZ);
     model.rotation.set(-0.05026, -0.92781, -0.12566);
     
@@ -2210,8 +2210,8 @@ loader.load(
       }
       
       // Scale down particle logo on mobile screens to ensure it doesn't overlap text bounds
-      // Mobile-optimized logo scale to fit narrow viewport widths without edge clipping (scaled down further to 2.4)
-      const logoScale = (window.innerWidth < 768 ? 2.4 : 5.7) / canvas.width; 
+      // Mobile-optimized logo scale to fit narrow viewport widths without edge clipping (scaled down further to 1.8)
+      const logoScale = (window.innerWidth < 768 ? 1.8 : 5.7) / canvas.width; 
       
       const particleCount = validPoints.length;
       const positions = new Float32Array(particleCount * 3);
@@ -3044,23 +3044,22 @@ function animate(time) {
     const autoRotY = Math.cos(window.modelTime * 0.6) * 0.05;
 
     // Interpolate model position using the fast transitionProgress
-    // Centered model positions on mobile with dynamic interpolation (swaying)
-    // Starts at -4.0 (Hero) and sways down to -7.2 to avoid head clipping when camera tilts
+    // Centered model positions on mobile, otherwise identical to desktop curves
     const baseModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(-0.6, -0.5, transitionProgress);
-    const baseModelY = isMobileViewport ? THREE.MathUtils.lerp(-4.0, -7.2, transitionProgress) : THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress);
-    const baseModelZ = THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);
+    const baseModelY = THREE.MathUtils.lerp(-3.93, -6.15, transitionProgress); // Matches desktop exactly
+    const baseModelZ = THREE.MathUtils.lerp(4.17, 7.0, transitionProgress);     // Matches desktop exactly
     
     // In Phase 4, keep centered on mobile, otherwise lerp to GUI settings
     const targetModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(baseModelX, guiParams.phase4X, phase4Progress);
-    const targetModelY = isMobileViewport ? THREE.MathUtils.lerp(baseModelY, -7.2, phase4Progress) : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
-    const targetModelZ = THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
+    const targetModelY = THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress); // Matches desktop exactly
+    const targetModelZ = THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress); // Matches desktop exactly
     
-    // Model Fly-In (Phase 6): Float at y = -5.8 on mobile (desktop -5.2) to hide the legs and keep head/torso visible above the footer card.
+    // Model Fly-In (Phase 6): Float at y = -5.2 (same as desktop) to hide the legs and keep head/torso visible above the footer card.
     // Animate depth coordinate forward to z = -1.0 (in front of camera) so it is visible
     const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
     const p6ModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
-    const p6ModelY = THREE.MathUtils.lerp(targetModelY, isMobileViewport ? -5.8 : -5.2, p6Ease);
-    const p6ModelZ = THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
+    const p6ModelY = THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease); // Matches desktop exactly
+    const p6ModelZ = THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease); // Matches desktop exactly
     
     // Mouse Interactive Rotation for the Model (subtler than the logo)
     const pointerX = targetMouse.x * 2 - 1;
