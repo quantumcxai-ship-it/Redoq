@@ -1229,7 +1229,7 @@
 
       /* 9. Phase 6 Container */
       .phase6-title {
-        top: 30vh !important;
+        top: 15vh !important;
         font-size: 2.2rem;
         white-space: normal;
         padding: 0 1.25rem;
@@ -2210,7 +2210,8 @@ loader.load(
       }
       
       // Scale down particle logo on mobile screens to ensure it doesn't overlap text bounds
-      const logoScale = (window.innerWidth < 768 ? 4.5 : 5.7) / canvas.width; 
+      // Mobile-optimized logo scale to fit narrow viewport widths without edge clipping.
+      const logoScale = (window.innerWidth < 768 ? 3.2 : 5.7) / canvas.width; 
       
       const particleCount = validPoints.length;
       const positions = new Float32Array(particleCount * 3);
@@ -2936,19 +2937,8 @@ function animate(time) {
       const scale = 0.95 + (0.05 * boundedOpacity);
       phase6Container.style.transform = `scale(${scale})`;
       
-      // Fade out the fixed text on mobile viewports as the footer slides up to cover it
-      const isMobile = window.innerWidth < 768;
+      // Keep title text visible above the footer glass card (no fade-out on mobile)
       let textOpacity = boundedOpacity;
-      if (isMobile) {
-        // Fade in from 0.86 to 0.91, stay visible to 0.93, then fade out completely by 0.97
-        if (scrollProgress < 0.91) {
-          textOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.86) / 0.05));
-        } else if (scrollProgress < 0.93) {
-          textOpacity = 1.0;
-        } else {
-          textOpacity = Math.max(0, Math.min(1, 1 - (scrollProgress - 0.93) / 0.04));
-        }
-      }
       phase6Container.style.opacity = textOpacity.toString();
       
       if (textOpacity > 0.3) {
@@ -3065,11 +3055,11 @@ function animate(time) {
     const targetModelY = isMobileViewport ? THREE.MathUtils.lerp(baseModelY, -8.0, phase4Progress) : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
     const targetModelZ = THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
     
-    // Model Fly-In (Phase 6): Float at y = -3.4 on mobile to prevent getting covered by footer links or clipped at the top
+    // Model Fly-In (Phase 6): Float at y = -5.2 (same as desktop) to hide the legs behind the footer card and show the upper torso/head.
     // Animate depth coordinate forward to z = -1.0 (in front of camera) so it is visible
     const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
     const p6ModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
-    const p6ModelY = isMobileViewport ? THREE.MathUtils.lerp(targetModelY, -3.4, p6Ease) : THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
+    const p6ModelY = THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
     const p6ModelZ = THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
     
     // Mouse Interactive Rotation for the Model (subtler than the logo)
