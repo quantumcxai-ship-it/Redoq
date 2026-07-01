@@ -1229,7 +1229,7 @@
 
       /* 9. Phase 6 Container */
       .phase6-title {
-        top: 35vh;
+        top: 18vh !important;
         font-size: 2.2rem;
         white-space: normal;
         padding: 0 1.25rem;
@@ -2386,7 +2386,9 @@ loader.load(
       
       window.logoParticles = new THREE.Points(particleGeo, particleMat);
       // Place the entire particle group at the exact focal point in world space
-      window.logoParticles.position.set(-0.6, -2.0, -3.0);
+      // Center horizontally on mobile viewports so it lines up with the camera
+      const isMobile = window.innerWidth < 768;
+      window.logoParticles.position.set(isMobile ? 0.0 : -0.6, -2.0, -3.0);
       window.logoParticles.frustumCulled = false; 
       window.logoParticles.visible = false;
       scene.add(window.logoParticles);
@@ -2554,6 +2556,11 @@ window.addEventListener('resize', () => {
   rendererBg.setSize(window.innerWidth, window.innerHeight);
   renderer.setSize(window.innerWidth, window.innerHeight);
   shaderUniforms.resolution.value.set(window.innerWidth, window.innerHeight);
+  
+  if (window.logoParticles) {
+    const isMobile = window.innerWidth < 768;
+    window.logoParticles.position.x = isMobile ? 0.0 : -0.6;
+  }
   
   // Update 3D scale proportionality (damped upscaling)
   let _newRatio = window.innerWidth / 1200;
@@ -2928,19 +2935,10 @@ function animate(time) {
       const scale = 0.95 + (0.05 * boundedOpacity);
       phase6Container.style.transform = `scale(${scale})`;
       
-      // Fade out the fixed text on mobile viewports as the footer slides up to cover it
-      const isMobile = window.innerWidth < 768;
-      let textOpacity = boundedOpacity;
-      if (isMobile) {
-        if (scrollProgress < 0.92) {
-          textOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.86) / 0.06));
-        } else {
-          textOpacity = Math.max(0, Math.min(1, 1 - (scrollProgress - 0.92) / 0.06));
-        }
-      }
-      phase6Container.style.opacity = textOpacity.toString();
+      // Fade in the fixed text based on progress, keeping it fully visible without cutoffs
+      phase6Container.style.opacity = boundedOpacity.toString();
       
-      if (textOpacity > 0.3) {
+      if (boundedOpacity > 0.3) {
         triggerTextReveal('#phase6-title');
       } else {
         untriggerTextReveal('#phase6-title');
