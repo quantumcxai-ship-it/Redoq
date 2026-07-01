@@ -3055,11 +3055,11 @@ function animate(time) {
     const targetModelY = isMobileViewport ? THREE.MathUtils.lerp(baseModelY, -4.0, phase4Progress) : THREE.MathUtils.lerp(baseModelY, guiParams.phase4Y, phase4Progress);
     const targetModelZ = THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress); // Matches desktop exactly
     
-    // Model Fly-In (Phase 6): Float at y = -4.2 on mobile (desktop -5.2) to hide lower body and keep head/torso visible above the footer card.
+    // Model Fly-In (Phase 6): Float at y = -6.0 on mobile (desktop -5.2) to hide lower body and keep head/torso visible above the footer card.
     // Animate depth coordinate forward to z = -1.0 (in front of camera) so it is visible
     const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
     const p6ModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
-    const p6ModelY = THREE.MathUtils.lerp(targetModelY, isMobileViewport ? -4.2 : -5.2, p6Ease);
+    const p6ModelY = THREE.MathUtils.lerp(targetModelY, isMobileViewport ? -6.0 : -5.2, p6Ease);
     const p6ModelZ = THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease); // Matches desktop exactly
     
     // Mouse Interactive Rotation for the Model (subtler than the logo)
