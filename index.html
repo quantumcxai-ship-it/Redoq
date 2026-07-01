@@ -3064,10 +3064,11 @@ function animate(time) {
     const targetModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(baseModelZ, guiParams.phase4Z, phase4Progress);
     
     // Model Fly-In (Phase 6): Float higher (y = -1.4) on mobile to avoid getting covered by the tall footer card
+    // Animate depth coordinate forward to z = -1.0 (in front of camera) so it is visible
     const p6Ease = 1.0 - Math.pow(1.0 - modelFlyInProgress, 3);
     const p6ModelX = isMobileViewport ? 0.0 : THREE.MathUtils.lerp(targetModelX, -0.4, p6Ease);
     const p6ModelY = isMobileViewport ? -1.4 : THREE.MathUtils.lerp(targetModelY, -5.2, p6Ease);
-    const p6ModelZ = isMobileViewport ? 4.17 : THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
+    const p6ModelZ = THREE.MathUtils.lerp(targetModelZ, -1.0, p6Ease);
     
     // Mouse Interactive Rotation for the Model (subtler than the logo)
     const pointerX = targetMouse.x * 2 - 1;
@@ -3249,8 +3250,9 @@ function animate(time) {
       
       // Phase 6: Logo scales up by an additional 20% (Total 40% -> 1.4)
       // Uses the exact same p6Ease curve as the model
+      // Disable double-scaling on mobile viewports so it remains fully visible and prominent
       const p6Ease = THREE.MathUtils.smoothstep(modelFlyInProgress, 0.0, 1.0);
-      const targetScale = THREE.MathUtils.lerp(1.0, 1.4, p6Ease) * responsiveScale;
+      const targetScale = THREE.MathUtils.lerp(1.0, 1.4, p6Ease) * (isMobileViewport ? 1.0 : responsiveScale);
       
       // Apply the same snapLerp damping as the model so they move at the exact same physical speed
       const currentScale = window.logoParticles.scale.x;
